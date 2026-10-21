@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DEAD SIGNAL · Hero terminal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&amp;family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060404}
+a{color:inherit}a:hover{color:#ffffff}
+@keyframes ds-crt{0%{transform:scale(.7,.003);filter:brightness(3.2) blur(1px);opacity:.9}22%{transform:scale(1,.006);filter:brightness(3) blur(.5px);opacity:1}55%{transform:scale(1,1);filter:brightness(1.6) blur(0)}100%{transform:none;filter:none}}
+@keyframes ds-soft{0%{opacity:0;filter:blur(6px);transform:translateY(6px)}60%{opacity:.85}100%{opacity:1;filter:blur(0);transform:none}}
+@keyframes ds-type{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0 0 0)}}
+@keyframes ds-bar{0%{opacity:0}100%{opacity:1}}
+.ds-crt{transform-origin:50% 50%;animation:ds-crt 1.4s cubic-bezier(.16,.84,.3,1) both}
+.ds-on1{animation:ds-soft 1.1s cubic-bezier(.2,.7,.2,1) .8s both}
+.ds-on2{animation:ds-soft .9s cubic-bezier(.2,.7,.2,1) 1.15s both}
+.ds-on3{animation:ds-soft .9s cubic-bezier(.2,.7,.2,1) 1.3s both}
+.ds-type{animation:ds-type 1s steps(30,end) 1s both}
+.ds-bar{animation:ds-bar .25s ease-out both}
+@media (prefers-reduced-motion: reduce){.ds-crt,.ds-on1,.ds-on2,.ds-on3,.ds-type,.ds-bar{animation:none !important}}
+</style>
+</helmet>
+<div id="top" style="position: relative; width: 100%; scroll-snap-align: start; box-sizing: border-box; padding: 20px 20px 0; background-color: {{fx.bezel}}; background-image: linear-gradient(180deg, transparent calc(100% - 240px), {{fx.bezel}} calc(100% - 10px)), repeating-linear-gradient(135deg, {{c.stripe}} 0 2px, transparent 2px 11px); color: {{c.ink}}; font-family: 'Share Tech Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased">
+
+<div aria-hidden="true" style="position: absolute; inset: 44px; background: {{fx.halo}}; filter: blur(64px); opacity: {{fx.haloOpacity}}; pointer-events: none"></div>
+
+<div class="ds-crt" style="position: relative; min-height: 860px; padding: 1px; box-sizing: border-box; background: {{fx.frame}}; clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
+<div style="position: relative; min-height: 858px; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); display: flex; flex-direction: column; text-shadow: {{fx.textShadow}}">
+
+<img src="assets/f32fe80f2095e937a1308f3901b796c6.jpg" alt="" style="position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); object-fit: cover; object-position: 70% 40%; filter: grayscale(1) contrast(1.2) brightness({{fx.bright}}) blur(2px)">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: {{fx.tint}}; mix-blend-mode: multiply"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(120% 95% at 50% 40%, rgb(12 4 5 / .15) 0%, rgb(12 4 5 / .55) 60%, rgb(6 2 3 / .9) 100%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(65% 55% at 50% 34%, {{fx.core}} 0%, rgb(0 0 0 / 0) 70%); mix-blend-mode: screen"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: {{fx.lift}}; mix-blend-mode: screen"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, {{fx.scan}} 0 1px, transparent 1px 3px)"></div>
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: .08; mix-blend-mode: screen; pointer-events: none"><filter id="ds-grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#ds-grain)"></rect></svg>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 140px rgb(0 0 0 / .75), inset 0 0 18px {{fx.edge}}"></div>
+
+<span aria-hidden="true" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
+<span aria-hidden="true" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
+
+<header style="position: relative; z-index: 2; box-sizing: border-box; padding: 34px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
+<nav aria-label="Main" class="ds-type" style="display: flex; flex-wrap: wrap; gap: 0 26px; font-size: 13px; letter-spacing: .1em">
+<a href="#game" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">01</span>GAME</a>
+<a href="#world" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">02</span>WORLD</a>
+<a href="#media" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">03</span>MEDIA</a>
+<a href="#news" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">04</span>NEWS</a>
+<a href="#roadmap" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">05</span>ROADMAP</a>
+<a href="#faq" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">06</span>FAQ</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 18px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .12em; color: {{t.dim}}; white-space: nowrap"><span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a; box-shadow: 0 0 8px rgb(229 48 58 / .8)"></span>LIVE · WARD B</span>
+<a href="#wishlist" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">WISHLIST<svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 7px; height: 9px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+</div>
+</header>
+
+<div style="position: relative; z-index: 1; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 0 0; padding-top: 62px">
+
+<div class="ds-on1" style="align-self: stretch; box-sizing: border-box; padding: 0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px))">
+<h1 style="margin: 0; filter: {{fx.logoFilter}}">
+<svg viewBox="0 0 878 186" role="img" aria-label="DEAD SIGNAL" style="display: block; width: 100%; height: 209px"><g fill="{{t.logo}}"><rect x="0" y="0" width="20" height="120"></rect><polygon points="24.4,0 60,0 80,20 80,100 60,120 24.4,120 24.4,100 52,100 60,92 60,28 52,20 24.4,20"></polygon><rect x="94" y="0" width="20" height="120"></rect><rect x="118.4" y="0" width="47.6" height="20"></rect><rect x="118.4" y="51" width="38" height="18"></rect><rect x="118.4" y="100" width="47.6" height="20"></rect><rect x="204.4" y="60" width="31.2" height="18"></rect><polygon points="180,120 180,20 200,0 240,0 260,20 260,120 240,120 240,28 232,20 208,20 200,28 200,120"></polygon><rect x="274" y="0" width="20" height="120"></rect><polygon points="298.4,0 334,0 354,20 354,100 334,120 298.4,120 298.4,100 326,100 334,92 334,28 326,20 298.4,20"></polygon><polygon points="420,0 480,0 480,20 428,20 420,28 420,51 460,51 480,71 480,100 460,120 400,120 400,100 452,100 460,92 460,77 452,69 420,69 400,49 400,20"></polygon><rect x="494" y="0" width="20" height="55.6"></rect><rect x="494" y="60" width="20" height="60"></rect><polygon points="548,0 608,0 608,20 556,20 548,28 548,92 556,100 588,100 588,72 568,72 568,54 608,54 608,100 588,120 548,120 528,100 528,20"></polygon><rect x="622" y="0" width="20" height="120"></rect><rect x="682" y="0" width="20" height="120"></rect><polygon points="646.4,0 663,0 677.6,120 661,120"></polygon><rect x="740.4" y="60" width="31.2" height="18"></rect><polygon points="716,120 716,20 736,0 776,0 796,20 796,120 776,120 776,28 768,20 744,20 736,28 736,120"></polygon><rect x="810" y="0" width="20" height="95.6"></rect><rect x="810" y="100" width="68" height="20"></rect></g><polyline points="0,164 561.48,164 571.48,140 583.48,184 593.48,150 601.48,164 878,164" fill="none" stroke="{{t.pulse}}" stroke-width="6" stroke-linecap="square"></polyline></svg>
+</h1>
+</div>
+
+<div class="ds-on2" style="margin-top: 28px; margin-bottom: 45px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
+<span aria-hidden="true" style="width: 44px; height: 44px; background-image: repeating-linear-gradient(135deg, {{t.hatchStrong}} 0 4px, transparent 4px 10px)"></span>
+<a href="#wishlist" style="display: inline-flex; align-items: center; gap: 16px; height: 56px; padding: 0 26px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 19px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; box-shadow: 0 0 28px rgb(229 48 58 / .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px; letter-spacing: .1em">SOON</span><svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 8px; height: 10px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+<a href="#game" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; box-shadow: inset 0 0 0 1px {{t.frame}}; font-size: 14px; letter-spacing: .12em; text-decoration: none; white-space: nowrap; color: #ffffff">EXPLORE THE GAME<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 13px; height: 13px"><path d="M8 2v11M4 9l4 4 4-4"></path></svg></a>
+</div>
+
+<div class="ds-on3" style="position: relative; align-self: stretch; margin-top: 40px; border-top: 1px solid {{c.line}}; border-bottom: 1px solid {{c.line}}; background-color: {{c.band}}; background-image: repeating-linear-gradient(45deg, {{c.hatch}} 0 1px, transparent 1px 6px)">
+<div style="box-sizing: border-box; padding: 24px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)); display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px"><span style="font-size: 14px; letter-spacing: .1em; color: {{c.dim}}">GAME PROFILE:</span><h2 style="margin: 0; font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; letter-spacing: .04em; color: {{c.ink}}; text-shadow: {{fx.headShadow}}">TOP-DOWN ZOMBIE EXTRACTION SHOOTER<br>FOR PC · COMING SOON TO STEAM</h2></div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px 24px; padding-top: 8px; font-size: 14px; letter-spacing: .08em; line-height: 1.45; color: {{c.soft}}">
+<span>RAIDS: 25–45 MIN<br>ZONES: 06</span>
+<span>INFECTED: 05 TYPES<br>BUNKER: 12 ROOMS</span>
+<span>DEVELOPED BY<br>KAZI STUDIO GAMES</span>
+</div>
+</div>
+</div>
+</div>
+
+<footer style="position: relative; z-index: 2; box-sizing: border-box; padding: 0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 30px; display: flex; flex-direction: column; gap: 8px">
+<span aria-hidden="true" style="font-size: 11px; letter-spacing: .14em; color: {{c.dim}}">SIGNAL</span>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
+<div aria-hidden="true" style="display: flex; gap: 3px">
+<span class="ds-bar" style="animation-delay: 1.45s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.54s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.63s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.72s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.81s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.90s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.99s; width: 22px; height: 8px; background: {{c.barOff}}"></span><span class="ds-bar" style="animation-delay: 2.08s; width: 22px; height: 8px; background: {{c.barOff}}"></span><span class="ds-bar" style="animation-delay: 2.17s; width: 22px; height: 8px; background: {{c.barOff}}"></span>
+</div>
+<a href="https://x.com/DeadSignalHQ" style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; height: 44px; margin: -18px 0; font-size: 13px; line-height: 1; letter-spacing: .1em; text-decoration: none; color: {{c.soft}}"><span style="color: {{c.ink}}">▲ GIVEAWAY</span><span>$5 STEAM GIFT CARDS · 3 WINNERS</span><span style="color: {{c.ink}}">ENTER ON X ↗</span></a>
+</div>
+</footer>
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;split&quot;,&quot;mono&quot;,&quot;signal&quot;,&quot;alarm&quot;],&quot;default&quot;:&quot;alarm&quot;,&quot;section&quot;:&quot;Color&quot;},&quot;bgColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#e5303a&quot;,&quot;#9e2229&quot;,&quot;#8c9194&quot;,&quot;#4a4f53&quot;],&quot;default&quot;:&quot;#491014&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;bgBrightness&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.1,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;default&quot;:0.37,&quot;section&quot;:&quot;Background&quot;},&quot;bezel&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#030202&quot;,&quot;#060404&quot;,&quot;#0a0b0c&quot;,&quot;#120607&quot;],&quot;default&quot;:&quot;#060404&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;bgHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;default&quot;:0.85,&quot;section&quot;:&quot;Background&quot;},&quot;light&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.65,&quot;section&quot;:&quot;Light&quot;},&quot;halo&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.5,&quot;section&quot;:&quot;Light&quot;},&quot;bloom&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.3,&quot;section&quot;:&quot;Light&quot;},&quot;aberration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;default&quot;:0.6,&quot;section&quot;:&quot;Light&quot;},&quot;scanlines&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.95,&quot;section&quot;:&quot;Light&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
+class Component extends DCLogic {
+renderVals() {
+var MONO = { ink: '#ece8e1', soft: 'rgb(236 232 225 / .82)', dim: 'rgb(236 232 225 / .6)', logo: '#ece8e1', pulse: '#e5303a', glowRGB: [236, 232, 225, .3], textRGB: [236, 232, 225, .35], coreRGB: [236, 232, 225, .13], lift: 'rgb(40 44 46 / .35)', halo: 'rgb(200 206 210 / .4)', edge: 'rgb(236 232 225 / .12)', frame: 'rgb(236 232 225 / .26)', line: 'rgb(236 232 225 / .2)', band: 'rgb(8 9 10 / .55)', hatch: 'rgb(236 232 225 / .035)', hatchStrong: 'rgb(236 232 225 / .45)', tick: 'rgb(236 232 225 / .5)', stripe: 'rgb(236 232 225 / .04)', tint: '#8c9194', bar: '#ece8e1', barOff: 'rgb(236 232 225 / .2)' };
+var SIGNAL = Object.assign({}, MONO, { coreRGB: [255, 214, 210, .14], lift: 'rgb(60 24 26 / .35)', halo: 'rgb(214 86 90 / .5)', band: 'rgb(12 4 5 / .55)', tint: '#b8323a' });
+var ALARM = { ink: '#ff4f57', soft: '#ffb3b6', dim: '#c98a8d', logo: '#e5303a', pulse: '#ff8a8f', glowRGB: [229, 48, 58, .55], textRGB: [255, 79, 87, .55], coreRGB: [255, 80, 88, .2], lift: 'rgb(70 14 18 / .45)', halo: 'rgb(229 48 58 / .7)', edge: 'rgb(255 79 87 / .18)', frame: 'rgb(229 48 58 / .6)', line: 'rgb(229 48 58 / .4)', band: 'rgb(229 48 58 / .08)', hatch: 'rgb(229 48 58 / .07)', hatchStrong: 'rgb(229 48 58 / .7)', tick: '#e5303a', stripe: 'rgb(229 48 58 / .07)', tint: '#e5303a', bar: '#e5303a', barOff: 'rgb(229 48 58 / .25)' };
+var key = this.props.palette || 'alarm';
+var bg = this.props.bgColor;
+var num = function (v, d) { var n = parseFloat(v); return isNaN(n) ? d : n; };
+var haze = num(this.props.bgHaze, .3);
+var hex = function (h) { h = String(h || '').replace('#', ''); if (h.length === 3) h = h.split('').map(function (x) { return x + x; }).join(''); var n = parseInt(h, 16); return isNaN(n) || h.length !== 6 ? null : [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+var bgRGB = hex(bg);
+var hazeOf = function (fallback) { var a = bgRGB || fallback; return 'rgb(' + Math.round(a[0] * .35) + ' ' + Math.round(a[1] * .35) + ' ' + Math.round(a[2] * .35) + ' / ' + Math.min(1, .45 * haze).toFixed(3) + ')'; };
+var t, c, tint, halo, frame, lift;
+if (key === 'split') {
+t = ALARM; c = MONO;
+tint = 'linear-gradient(180deg, ' + (bg || '#e5303a') + ' 0%, ' + (bg || '#d8343c') + ' 40%, #8c9194 70%, #8c9194 100%)';
+halo = 'linear-gradient(180deg, rgb(229 48 58 / .75) 0%, rgb(229 48 58 / .45) 40%, rgb(200 206 210 / .3) 75%)';
+frame = 'linear-gradient(180deg, rgb(229 48 58 / .6) 0%, rgb(229 48 58 / .45) 40%, rgb(236 232 225 / .26) 72%)';
+lift = 'linear-gradient(180deg, ' + hazeOf([200, 40, 50]) + ' 0%, rgb(40 44 46 / ' + Math.min(1, .35 * haze).toFixed(3) + ') 70%)';
+} else {
+t = c = key === 'alarm' ? ALARM : key === 'signal' ? SIGNAL : MONO;
+tint = bg || c.tint; halo = c.halo; frame = c.frame;
+lift = key === 'alarm' ? hazeOf([200, 40, 50]) : key === 'signal' ? hazeOf([171, 69, 74]) : hazeOf([114, 126, 131]);
+}
+var light = num(this.props.light, .5), haloK = num(this.props.halo, .15), bloom = num(this.props.bloom, .45), ab = num(this.props.aberration, .5), scan = num(this.props.scanlines, .95);
+var rgba = function (a, k) { return 'rgb(' + a[0] + ' ' + a[1] + ' ' + a[2] + ' / ' + Math.min(1, a[3] * k).toFixed(3) + ')'; };
+var split = function (px) { return (-px * ab).toFixed(2) + 'px 0 rgb(255 40 60 / .45), ' + (px * ab).toFixed(2) + 'px 0 rgb(90 200 255 / .3)'; };
+var fx = {
+tint: tint,
+bright: Math.max(.05, Math.min(1, num(this.props.bgBrightness, .45))).toFixed(2),
+bezel: this.props.bezel || '#030202',
+halo: halo,
+haloOpacity: Math.min(1, .6 * haloK).toFixed(2),
+frame: frame,
+lift: lift,
+core: rgba(t.coreRGB, light),
+edge: c.edge,
+scan: 'rgb(0 0 0 / ' + Math.min(1, .24 * scan).toFixed(3) + ')',
+textShadow: split(.6) + ', 0 0 ' + (10 * bloom).toFixed(1) + 'px ' + rgba(c.textRGB, bloom),
+textShadowTop: split(.6) + ', 0 0 ' + (10 * bloom).toFixed(1) + 'px ' + rgba(t.textRGB, bloom),
+headShadow: split(.8) + ', 0 0 ' + (16 * bloom).toFixed(1) + 'px ' + rgba(c.glowRGB, bloom),
+logoFilter: 'drop-shadow(' + (-2 * ab).toFixed(2) + 'px 0 rgb(255 40 60 / .45)) drop-shadow(' + (2 * ab).toFixed(2) + 'px 0 rgb(90 200 255 / .3)) drop-shadow(0 0 ' + (26 * bloom).toFixed(1) + 'px ' + rgba(t.glowRGB, bloom) + ')'
+};
+var end = new Date('2026-10-25T23:59').getTime();
+var left = end - Date.now();
+var pad = function (n) { return String(n).padStart(2, '0'); };
+var label = 'ENDED';
+if (left > 0) {
+var d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60;
+label = d > 0 ? 'T−' + d + 'D ' + pad(h) + 'H' : 'T−' + pad(h) + 'H ' + pad(m) + 'M';
+}
+return { countdown: label, c: c, t: t, fx: fx };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DEAD SIGNAL · World</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060404}
+@keyframes dsw-blink{0%,55%{opacity:1}56%,100%{opacity:.25}}
+.dsw-blink{animation:dsw-blink 1.4s steps(1) infinite}
+.dsw-row{transition:background .2s,color .2s}
+.dsw-row:hover{background:rgb(229 48 58 / .08)}
+.dsw-folder{transition:filter .2s}
+.dsw-folder:hover{filter:brightness(1.12)}
+@media (prefers-reduced-motion: reduce){.dsw-blink{animation:none}}
+@keyframes dsw-tearA{0%{transform:translateX(-6px) scale(1.04);filter:blur(6px) brightness(1.6) contrast(1.3) saturate(.3)}35%{transform:translateX(3px) scale(1.02);filter:blur(2px) brightness(1.2) saturate(.7)}100%{transform:none;filter:none}}
+@keyframes dsw-tearB{0%{transform:translateX(6px) scale(1.04);filter:blur(6px) brightness(1.6) contrast(1.3) saturate(.3)}35%{transform:translateX(-3px) scale(1.02);filter:blur(2px) brightness(1.2) saturate(.7)}100%{transform:none;filter:none}}
+@keyframes dsw-staticA{0%{opacity:.6;background-position:0 0}25%{opacity:.45;background-position:-40px 30px}55%{opacity:.18;background-position:20px -50px}100%{opacity:0;background-position:40px 10px}}
+@keyframes dsw-staticB{0%{opacity:.6;background-position:10px 0}25%{opacity:.45;background-position:40px -30px}55%{opacity:.18;background-position:-20px 50px}100%{opacity:0;background-position:-40px 10px}}
+@keyframes dsw-dim{0%{transform:none;filter:none}100%{transform:scale(1.03);filter:blur(5px) brightness(1.5) contrast(1.3) saturate(.3)}}
+@keyframes dsw-rise{0%{opacity:0}100%{opacity:.6}}
+.dsw-out img{animation:dsw-dim .32s cubic-bezier(.5,0,.8,.4) both}.dsw-out .dsw-static{animation:dsw-rise .32s ease-in both}
+.dsw-cha img{animation:dsw-tearA .7s cubic-bezier(.2,.7,.2,1) both}.dsw-chb img{animation:dsw-tearB .7s cubic-bezier(.2,.7,.2,1) both}
+.dsw-cha .dsw-static{animation:dsw-staticA .65s ease-out both}.dsw-chb .dsw-static{animation:dsw-staticB .65s ease-out both}
+.dsw-static{position:absolute;inset:0;pointer-events:none;opacity:0;mix-blend-mode:screen;background-size:180px 180px;background-image:url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%221.1%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix values=%220 0 0 0 1  0 0 0 0 .55  0 0 0 0 .58  0 0 0 1.4 -.3%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E')}
+@media (prefers-reduced-motion: reduce){.dsw-out img,.dsw-out .dsw-static,.dsw-cha img,.dsw-chb img,.dsw-cha .dsw-static,.dsw-chb .dsw-static{animation:none !important}}
+
+</style>
+</helmet>
+<div id="world" style="position: relative; width: 100%; box-sizing: border-box; padding: 0 20px; background-color: #060404; background-image: repeating-linear-gradient(135deg, rgb(229 48 58 / .07) 0 2px, transparent 2px 11px); color: #ff4f57; font-family: 'Share Tech Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased">
+
+<div style="position: relative; padding: 1px; box-sizing: border-box; background: rgb(229 48 58 / .6); clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
+<div style="position: relative; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); display: flex; flex-direction: column; text-shadow: -0.36px 0 rgb(255 40 60 / .45), 0.36px 0 rgb(90 200 255 / .3), 0 0 3px rgb(255 79 87 / .165)">
+
+<img src="{{bg}}" alt="" style="position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); object-fit: cover; object-position: {{bgPos}}; filter: grayscale(1) contrast(1.2) brightness(.37) blur(2px)">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: #491014; mix-blend-mode: multiply"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(120% 95% at 50% 40%, rgb(12 4 5 / .15) 0%, rgb(12 4 5 / .55) 60%, rgb(6 2 3 / .9) 100%)"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(65% 55% at 50% 34%, rgb(255 80 88 / .13) 0%, rgb(0 0 0 / 0) 70%); mix-blend-mode: screen"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: rgb(26 6 7 / .383); mix-blend-mode: screen"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgb(0 0 0 / .228) 0 1px, transparent 1px 3px)"></div>
+<svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: .08; mix-blend-mode: screen; pointer-events: none"><filter id="dsw-grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#dsw-grain)"></rect></svg>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 140px rgb(0 0 0 / .75), inset 0 0 18px rgb(255 79 87 / .18)"></div>
+<span aria-hidden="true" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
+<span aria-hidden="true" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
+
+<header style="position: relative; z-index: 2; box-sizing: border-box; padding: 34px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; min-height: 78px">
+<span style="font-size: 13px; letter-spacing: .1em"><span style="color: #c98a8d">02</span>&nbsp;&nbsp;THE WORLD · WHO’S STILL IN THE ZONE</span>
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .12em; color: #c98a8d; white-space: nowrap"><span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a; box-shadow: 0 0 8px rgb(229 48 58 / .8)"></span>{{status}}</span>
+</header>
+
+<div style="position: relative; z-index: 1; flex: 1 1 auto; box-sizing: border-box; padding: 40px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 56px; display: flex; flex-direction: column; padding-top: 10px; padding-bottom: 28px; gap: 17px">
+
+<div role="tablist" aria-label="Database" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="2">
+<button type="button" role="tab" class="dsw-folder" aria-selected="{{t.active}}" onClick="{{t.pick}}" style="position: relative; height: 60px; padding: 0; border: 0; background: transparent; cursor: pointer; text-align: left; text-shadow: none">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: {{t.edge}}; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)"><span style="position: absolute; inset: {{t.bw}}; background: {{t.fill}}; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 13.6px), calc(100% - 13.6px) 100%, 0 100%)"></span></span>
+<span style="position: relative; display: flex; align-items: center; height: 100%; padding: 0 22px; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: .08em; color: {{t.color}}">{{t.label}}</span>
+<span style="position: absolute; top: 12px; right: 22px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; color: {{t.sub}}">{{t.hint}}</span>
+</button>
+</sc-for>
+</div>
+
+<div aria-live="polite" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; margin-top: 36px; align-items: start">
+<div role="tablist" aria-label="Entries" aria-orientation="vertical" style="grid-column: span 1; display: flex; flex-direction: column; border-top: 1px solid rgb(229 48 58 / .3); width: 179px">
+<sc-for list="{{entries}}" as="e" hint-placeholder-count="6">
+<button type="button" role="tab" class="dsw-row" aria-selected="{{e.active}}" onClick="{{e.pick}}" style="display: flex; flex-direction: column; justify-content: center; gap: 5px; height: 60px; padding: 0 4px; border: 0; border-bottom: 1px solid rgb(229 48 58 / .3); background: transparent; color: {{e.color}}; font-family: 'Share Tech Mono', ui-monospace, monospace; text-align: left; text-shadow: inherit; cursor: pointer; width: 179px">
+<span style="display: flex; align-items: center; gap: 10px; font-size: 16px; letter-spacing: .08em; white-space: nowrap"><span aria-hidden="true" style="flex: none; width: 7px; height: 7px; background: {{e.mark}}"></span>{{e.name}}</span>
+<span style="padding-left: 17px; font-size: 11px; letter-spacing: .12em; color: #c98a8d">{{e.num}} · {{e.tag}}</span>
+</button>
+</sc-for>
+</div>
+<div style="grid-column: 2 / span 5; align-self: stretch; position: relative; padding: 1px; box-sizing: border-box; clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px); background-color: #E5303A4C">
+<div style="position: relative; height: 100%; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 24px; background: rgb(12 4 5 / .78); clip-path: polygon(23.6px 0, 100% 0, 100% calc(100% - 23.6px), calc(100% - 23.6px) 100%, 0 100%, 0 23.6px)">
+<div class="{{chCls}}" style="grid-column: span 2; position: relative; min-height: 340px; overflow: hidden; border-right: 1px solid rgb(229 48 58 / .45)">
+<sc-if value="{{cur.img}}" hint-placeholder-val="{{ true }}"><img src="{{cur.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{cur.pos}}"></sc-if>
+<sc-if value="{{cur.noImg}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; inset: 0; display: grid; place-items: center; background-image: repeating-linear-gradient(135deg, rgb(229 48 58 / .1) 0 2px, transparent 2px 10px); font-size: 12px; letter-spacing: .14em; color: #c98a8d"><span class="{{cur.cls}}">{{cur.noImgLabel}}</span></span></sc-if>
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgb(0 0 0 / .18) 0 1px, transparent 1px 3px)"></div>
+<span aria-hidden="true" class="dsw-static"></span>
+</div>
+<div style="grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; padding: 28px 28px 28px 0">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 14px; letter-spacing: .1em; color: #c98a8d">{{kindLabel}}</span>
+<h2 style="margin: 0; font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: clamp(36px, 3.6vw, 52px); line-height: .95; letter-spacing: .04em; color: #ff4f57; text-shadow: -0.48px 0 rgb(255 40 60 / .45), 0.48px 0 rgb(90 200 255 / .3), 0 0 4.8px rgb(229 48 58 / .165)">{{cur.name}}</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; letter-spacing: .04em; color: #ffb3b6; width: 470px">{{cur.text}}</p>
+</div>
+<div style="position: relative; margin: 0 -28px -28px -24px; border-top: 1px solid rgb(229 48 58 / .4); background-color: rgb(229 48 58 / .08); background-image: repeating-linear-gradient(45deg, rgb(229 48 58 / .07) 0 1px, transparent 1px 6px)">
+<div style="box-sizing: border-box; padding: 22px 28px 26px 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 20px; font-size: 13px; letter-spacing: .08em; line-height: 1.45; color: #ffb3b6">
+<sc-for list="{{cur.stats}}" as="s" hint-placeholder-count="3">
+<span><span style="color: #c98a8d">{{s.k}}:</span> {{s.v}}<br><span style="color: #c98a8d">{{s.k2}}:</span> <span class="{{s.cls}}">{{s.v2}}</span></span>
+</sc-for>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":860}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { tab: 'factions', f: 0, t: 0, flip: false, dp: 1, ch: false };
+var self = this;
+this.go = function (o) {
+clearTimeout(self._dl);
+self.setState({ pend: o, out: true });
+self._dl = setTimeout(function () { self.commit(o); }, 320);
+};
+this.commit = function (o) {
+o.flip = !self.state.flip; o.ch = true; o.dp = 0; o.out = false; o.pend = null;
+self.setState(o);
+if (self._dr) cancelAnimationFrame(self._dr);
+var t0 = performance.now();
+var step = function (now) {
+var p = Math.min(1, (now - t0) / 650);
+self.setState({ dp: p });
+self._dr = p < 1 ? requestAnimationFrame(step) : 0;
+};
+self._dr = requestAnimationFrame(step);
+};
+}
+renderVals() {
+var self = this, st = this.state;
+var HERO = 'assets/f32fe80f2095e937a1308f3901b796c6.jpg';
+var FAC = [
+{ name: 'KAZI', tag: 'HOSTILE', img: 'assets/b8fad39ccde2bba1e703bf60831b005f.jpg', pos: '50% 22%', sig: 9, text: 'Ran the trials in Ward B, then sealed the zone with its own people inside. Under Tan, it runs the zone as if nothing went wrong.', stats: [['TYPE', 'THE COMPANY', 'LEADER', 'TAN'], ['TERRITORY', 'WARD B', 'STANCE', 'HOSTILE'], ['SEEN', 'EVERY RAID', 'BADGES', 'YES']] },
+{ name: 'HOLLOW CHOIR', tag: 'HOSTILE', img: 'assets/01929d7d6c470a755771ac8eb880a42e.jpg', pos: '50% 40%', sig: 6, text: 'They hold the hospital chapel. They call the outbreak a cleansing and the bitten chosen.', stats: [['TYPE', 'CULT', 'LEADER', 'UNKNOWN'], ['TERRITORY', 'CHAPEL', 'STANCE', 'HOSTILE'], ['SEEN', 'AT NIGHT', 'BADGES', 'NO']] },
+{ name: 'THE CLEANERS', tag: 'HOSTILE', img: 'assets/01e8f82193572386cd5b4ba97138ed94.jpg', pos: '50% 50%', sig: 5, text: 'Ex-civilians in work clothes and salvaged kit. They strip bodies, burn nests and remove witnesses.', stats: [['TYPE', 'REBEL CREW', 'LEADER', 'UNKNOWN'], ['TERRITORY', 'FURNACE', 'STANCE', 'HOSTILE'], ['SEEN', 'AFTER FIGHTS', 'BADGES', 'TAKEN']] },
+{ name: 'CAIRN PMC', tag: 'NEUTRAL', sig: 7, text: 'Hired guns working the zone for whoever pays. They sell armour and they sell what they overhear.', stats: [['TYPE', 'CONTRACTORS', 'LEADER', 'UNKNOWN'], ['TERRITORY', 'EAST GATE', 'STANCE', 'FOR HIRE'], ['SEEN', 'AT THE GATE', 'BADGES', 'BOUGHT']] },
+{ name: 'SCAVENGERS', tag: 'NEUTRAL', sig: 4, text: 'Every scav crew in the zone drinks at the Rust Bar and sells through Mother Rust’s counter.', stats: [['TYPE', 'NO FLAG', 'LEADER', 'NONE'], ['TERRITORY', 'RUST BAR', 'STANCE', 'NEUTRAL'], ['SEEN', 'EVERYWHERE', 'BADGES', 'SOLD']] },
+{ name: 'THE GHOST', tag: '???', sig: 0, ghost: true, text: 'Officially, KAZI’s founder is dead. Some patrols report hunters in Praetorian badges.', stats: [['TYPE', 'UNCONFIRMED', 'LEADER', '██████'], ['TERRITORY', 'UNKNOWN', 'STANCE', 'UNKNOWN'], ['SEEN', 'UNCONFIRMED', 'SIGNAL', 'LOST']] }
+];
+var TR = [
+{ name: 'IRON ANGEL', tag: 'ONLINE', img: 'assets/6cc3babce74769a487e63b555ec34faf.jpg', pos: '50% 30%', sig: 9, text: '“Cash first. Then we talk about what you want to shoot.” The beta opens with her counter.', stats: [['SELLS', 'WEAPONS', 'ALSO', 'AMMO'], ['STATUS', 'ONLINE', 'SINCE', 'BETA'], ['LOYALTY', 'LL1', 'PAYS', 'CASH ONLY']] },
+{ name: 'DR. KESTREL', tag: 'AFTER BETA', sig: 2, text: 'Medicine and surgery. Comes online after the beta.', stats: [['SELLS', 'MEDS', 'ALSO', 'SURGERY'], ['STATUS', 'OFFLINE', 'SINCE', 'AFTER BETA'], ['LOYALTY', 'LOCKED', 'PAYS', '—']] },
+{ name: 'MOTHER RUST', tag: 'AFTER BETA', sig: 2, text: 'Food and barter at the Rust Bar counter. Comes online after the beta.', stats: [['SELLS', 'FOOD', 'ALSO', 'BARTER'], ['STATUS', 'OFFLINE', 'SINCE', 'AFTER BETA'], ['LOYALTY', 'LOCKED', 'PAYS', '—']] },
+{ name: 'THE DEACON', tag: 'AFTER BETA', sig: 2, text: 'Melee weapons and rites. Comes online after the beta.', stats: [['SELLS', 'MELEE', 'ALSO', 'RITES'], ['STATUS', 'OFFLINE', 'SINCE', 'AFTER BETA'], ['LOYALTY', 'LOCKED', 'PAYS', '—']] },
+{ name: 'MAJOR VOSS', tag: 'AFTER BETA', sig: 2, text: 'Armour and intel. Comes online after the beta.', stats: [['SELLS', 'ARMOUR', 'ALSO', 'INTEL'], ['STATUS', 'OFFLINE', 'SINCE', 'AFTER BETA'], ['LOYALTY', 'LOCKED', 'PAYS', '—']] },
+{ name: 'UNKNOWN', tag: 'NO SIGNAL', sig: 0, ghost: true, text: 'A sixth frequency keeps showing up on the bunker radio. Nobody has answered it yet.', stats: [['SELLS', 'UNKNOWN', 'ALSO', 'UNKNOWN'], ['STATUS', 'NO SIGNAL', 'SINCE', '—'], ['LOYALTY', '—', 'SIGNAL', 'LOST']] }
+];
+var CH = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#/%';
+var dp = st.dp == null ? 1 : st.dp;
+var scr = function (s, d) { s = String(s); if (dp >= 1) return s; var n = s.length, out = ''; for (var q = 0; q < n; q++) { var c = s.charAt(q); if (c === ' ' || c === '·' || c === '.') { out += c; continue; } out += (q / n) < dp * 1.25 - (d || 0) ? c : CH.charAt(Math.floor(Math.random() * CH.length)); } return out; };
+var isF = st.tab === 'factions';
+var list = isF ? FAC : TR, idx = isF ? st.f : st.t, cur = list[idx];
+var pk = isF ? 'f' : 't', sel = st.pend && st.pend.tab == null && st.pend[pk] != null ? st.pend[pk] : idx;
+var bars = [];
+for (var i = 0; i < 9; i++) bars.push(i < cur.sig ? '#e5303a' : 'rgb(229 48 58 / .25)');
+return {
+bg: cur.img || HERO,
+bgPos: cur.pos || '70% 40%',
+status: (isF ? 'FACTIONS' : 'TRADERS') + ' · ' + String(idx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0'),
+kindLabel: isF ? 'FACTION PROFILE:' : 'TRADER PROFILE:',
+tabs: [['factions', 'FACTIONS', 'WHO HOLDS THE ZONE'], ['traders', 'TRADERS', 'WHO SELLS IN IT']].map(function (t) {
+var on = ((st.pend && st.pend.tab) || st.tab) === t[0];
+return { label: t[1], hint: t[2], active: on, edge: on ? '#e5303a' : 'rgb(229 48 58 / .6)', bw: on ? '0px' : '1px', fill: on ? '#e5303a' : 'rgb(12 4 5 / .88)', color: on ? '#120607' : '#ff4f57', sub: on ? '#120607' : '#c98a8d', corner: on ? '#120607' : '#e5303a', pick: function () { if (st.tab !== t[0]) self.go({ tab: t[0] }); } };
+}),
+entries: list.map(function (e, i) {
+var on = i === sel;
+return { name: e.name, tag: e.tag, num: String(i + 1).padStart(2, '0'), active: on, mark: on ? '#e5303a' : 'transparent', color: on ? '#ffd0d2' : '#ff4f57', pick: function () { if (i === sel) return; var o = {}; o[isF ? 'f' : 't'] = i; self.go(o); } };
+}),
+chCls: st.out ? 'dsw-out' : !st.ch ? '' : st.flip ? 'dsw-cha' : 'dsw-chb',
+cur: { name: scr(cur.name), text: cur.text, img: cur.img || '', pos: cur.pos || '50% 50%', noImg: !cur.img, noImgLabel: cur.ghost ? 'SIGNAL LOST' : 'NO VISUAL ON FILE', cls: cur.ghost ? 'dsw-blink' : '', stats: cur.stats.map(function (s) { return { k: s[0], v: scr(s[1], .15), k2: s[2], v2: scr(s[3], .25), cls: cur.ghost && s[3] === 'LOST' ? 'dsw-blink' : '' }; }) },
+bars: bars
+};
+}
+}
+</script>
+</body>
+</html>

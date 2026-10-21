@@ -1,0 +1,240 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Final-tn0c.dc.html": {
+      "expand": "fill",
+      "h": 3000,
+      "is_interactive": true,
+      "title": "05 · Roadmap, FAQ, CTA, Footer copy",
+      "w": 1440,
+      "x": -5387,
+      "y": 9140
+    },
+    "Final.dc.html": {
+      "expand": "fill",
+      "h": 3000,
+      "is_interactive": true,
+      "title": "05 · Roadmap, FAQ, CTA, Footer",
+      "w": 1440,
+      "x": 3080,
+      "y": 7930
+    },
+    "Game-b1y9.dc.html": {
+      "expand": "fill",
+      "h": 2860,
+      "is_interactive": true,
+      "title": "02 · The Game + Badges copy",
+      "w": 1440,
+      "x": -5387,
+      "y": 1320
+    },
+    "Game.dc.html": {
+      "expand": "fill",
+      "guides": [
+        {
+          "count": 6,
+          "gutter": 24,
+          "hidden": true,
+          "kind": "columns",
+          "margin": 56
+        }
+      ],
+      "h": 1850,
+      "is_interactive": true,
+      "title": "02 · The Game: raid phases + insignia",
+      "w": 1440,
+      "x": 3080,
+      "y": 1120
+    },
+    "Main-jutw.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "title": "01 · Header + Hero copy",
+      "w": 1440,
+      "x": -5387,
+      "y": 300
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "guides": [
+        {
+          "count": 6,
+          "gutter": 24,
+          "hidden": true,
+          "kind": "columns",
+          "margin": 56
+        }
+      ],
+      "h": 1000,
+      "title": "01 · Header + Hero",
+      "w": 1440,
+      "x": 3080,
+      "y": 0
+    },
+    "Media-anp1.dc.html": {
+      "expand": "fill",
+      "h": 1880,
+      "title": "04 · Media + News copy",
+      "w": 1440,
+      "x": -5387,
+      "y": 7140
+    },
+    "Media.dc.html": {
+      "expand": "fill",
+      "h": 1880,
+      "title": "04 · Media + News",
+      "w": 1440,
+      "x": 3080,
+      "y": 5930
+    },
+    "Page-2.dc.html": {
+      "expand": "fill",
+      "guides": [
+        {
+          "count": 6,
+          "gutter": 24,
+          "hidden": true,
+          "kind": "columns",
+          "margin": 56
+        }
+      ],
+      "h": 2000,
+      "is_interactive": true,
+      "title": "▣ Full page · continued",
+      "w": 1440,
+      "x": 1520,
+      "y": 8000
+    },
+    "Page.dc.html": {
+      "expand": "fill",
+      "guides": [
+        {
+          "count": 6,
+          "gutter": 24,
+          "hidden": true,
+          "kind": "columns",
+          "margin": 56
+        }
+      ],
+      "h": 8000,
+      "is_interactive": true,
+      "title": "▣ Full page · all sections",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Play-s1vd.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "title": "▶ Full page · Play copy",
+      "w": 1440,
+      "x": -6907,
+      "y": 300
+    },
+    "Play.dc.html": {
+      "expand": "fill",
+      "h": 900,
+      "is_interactive": true,
+      "title": "▶ Full page · Play",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "World-4tv7.dc.html": {
+      "expand": "fill",
+      "h": 2720,
+      "title": "03 · World + Traders copy",
+      "w": 1440,
+      "x": -5387,
+      "y": 4300
+    },
+    "World.dc.html": {
+      "expand": "fill",
+      "guides": [
+        {
+          "count": 6,
+          "gutter": 24,
+          "hidden": true,
+          "kind": "columns",
+          "margin": 56
+        }
+      ],
+      "h": 860,
+      "is_interactive": true,
+      "title": "03 · World: factions + traders",
+      "w": 1440,
+      "x": 3080,
+      "y": 3090
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-21T10:05:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "note-6gpxj6": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "PLAY",
+      "w": 240,
+      "x": -6907,
+      "y": 0
+    },
+    "note-fba3s7": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "PAGE · SECTIONS",
+      "w": 240,
+      "x": -5387,
+      "y": 0
+    },
+    "pageTitle": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "PAGE · FULL",
+      "w": 240,
+      "x": 1520,
+      "y": -300
+    },
+    "playTitle": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "PLAY",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "sectionsTitle": {
+      "kind": "title1",
+      "maxW": 1440,
+      "text": "SECTIONS · SOURCE",
+      "w": 240,
+      "x": 3080,
+      "y": -300
+    }
+  },
+  "order": [
+    "Play.dc.html",
+    "Page.dc.html",
+    "Page-2.dc.html",
+    "Main.dc.html",
+    "Game.dc.html",
+    "World.dc.html",
+    "Media.dc.html",
+    "Final.dc.html",
+    "Play-s1vd.dc.html",
+    "Main-jutw.dc.html",
+    "Game-b1y9.dc.html",
+    "World-4tv7.dc.html",
+    "Media-anp1.dc.html",
+    "Final-tn0c.dc.html"
+  ],
+  "pages": [],
+  "title": "DEAD SIGNAL HQ"
+}

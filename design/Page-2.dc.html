@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DEAD SIGNAL · Full page layout (continued)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#060404}
+.ds-grain{position:absolute;inset:0;z-index:40;pointer-events:none;opacity:.07;background-image:url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:240px 240px}
+</style>
+</helmet>
+<div style="width: 100%; margin-top: -8000px; display: flex; flex-direction: column; gap: 180px; background: #060404">
+<dc-import name="Main" hint-size="100%,1000px"></dc-import>
+<dc-import name="Game" hint-size="100%,1850px"></dc-import>
+<dc-import name="World" hint-size="100%,700px"></dc-import>
+<dc-import name="Media" hint-size="100%,2810px"></dc-import>
+<dc-import name="Final" hint-size="100%,2500px"></dc-import>
+</div>
+<div aria-hidden="true" class="ds-grain"></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2000}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

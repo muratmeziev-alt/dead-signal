@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DEAD SIGNAL · The Game</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&amp;family=Schibsted+Grotesk:wght@400;500;600;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#060404}
+a{color:inherit}a:hover{color:#ffffff}
+@keyframes ds-spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+@media (prefers-reduced-motion: reduce){.ds-medal{animation:none !important}.ds-anim,.ds-anim *{transition:none !important}}
+[data-ds-scroller]::-webkit-scrollbar{display:none}
+@media (max-width: 900px){.ds-fan{display:none !important}.ds-loop [role=tablist]{grid-template-columns:minmax(0,1fr) !important;margin-bottom:24px}}
+</style>
+</helmet>
+<section id="game" style="position: relative; width: 100%; overflow-x: clip; background: #060404; color: #ece8e1; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased">
+
+<div style="position: relative; max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(20px, 4vw, 56px); display: flex; flex-direction: column">
+
+<div data-ds-pin="" ref="{{pinRef}}" onPointerEnter="{{onProbe}}" style="--h: min(100vh, 900px); position: relative; height: {{pinH}}">
+<div class="ds-anim" style="position: sticky; top: calc((100vh - var(--h)) / 2); height: {{animH}}; box-sizing: border-box; padding: {{animPad}}; display: flex; flex-direction: column; justify-content: center; gap: 20px">
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; padding-bottom: 28px">
+<span style="display: inline-flex; align-items: center; gap: 10px"><span style="padding: 3px 7px; background: #e5303a; color: #120607">THE GAMEPLAY</span><span style="color: rgb(236 232 225 / .55)">ONE RAID, THREE PHASES</span></span>
+<span aria-hidden="true" style="position: relative; width: 200px; height: 2px; background: rgb(236 232 225 / .16)"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{progPct}}; background: #e5303a"></span></span>
+</div>
+
+<div class="ds-loop" style="position: relative; display: flex; flex-direction: column">
+
+<div role="tablist" aria-label="Raid phases" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<sc-for list="{{phases}}" as="p" hint-placeholder-count="3">
+<button type="button" role="tab" aria-selected="{{p.active}}" onClick="{{p.pick}}" style="{{p.rowStyle}}">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: {{p.border}}; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); transition: background-color .4s"><span style="position: absolute; inset: {{p.bw}}; background: {{p.fill}}; clip-path: {{p.innerClip}}; transition: background-color .4s"></span></span>
+<span style="position: relative; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: {{p.metaColor}}; transition: color .4s">{{p.num}} · {{p.sub}}</span>
+<h2 style="position: relative; margin: 0; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 60px; line-height: .9; color: {{p.nameColor}}; transition: color .4s">{{p.name}}.</h2>
+<span aria-hidden="true" style="position: absolute; left: 50%; bottom: -5px; width: 8px; height: 8px; margin-left: -4px; background: #e5303a; box-shadow: 0 0 10px rgb(229 48 58 / .8); opacity: {{p.dotOp}}; transition: opacity .4s"></span>
+</button>
+</sc-for>
+</div>
+
+<div class="ds-fan" aria-hidden="true" style="position: relative; height: 210px">
+<svg viewBox="0 0 1328 210" preserveAspectRatio="none" fill="none" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none">
+<sc-for list="{{rail}}" as="l" hint-placeholder-count="9">
+<path d="{{l.d}}" stroke="rgb(229 48 58 / .14)" stroke-width="5" opacity="{{l.o}}"></path>
+<path d="{{l.d}}" stroke="#e5303a" stroke-width="1.2" opacity="{{l.o}}"></path>
+</sc-for>
+</svg>
+<sc-for list="{{rail}}" as="l" hint-placeholder-count="9">
+<div style="position: absolute; left: {{l.left}}; top: {{l.top}}; display: flex; flex-direction: column; align-items: center; gap: 7px; opacity: {{l.o}}; visibility: {{l.vis}}; transform: translate(-50%, -4px); transition: {{ease}}; white-space: nowrap; pointer-events: none">
+<span style="width: 8px; height: 8px; background: #e5303a; box-shadow: 0 0 8px rgb(229 48 58 / .7)"></span>
+<span style="font-size: 14px; font-weight: 500; line-height: 1.1; color: #ece8e1">{{l.label}}</span>
+<span style="padding: 1px 5px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; color: rgb(236 232 225 / .62); box-shadow: inset 0 0 0 1px rgb(236 232 225 / .22)">{{l.tag}}</span>
+</div>
+</sc-for>
+</div>
+
+<div role="tabpanel" aria-live="polite" style="display: grid; justify-items: center">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="3">
+<div aria-hidden="{{c.hidden}}" style="position: relative; grid-area: 1 / 1; width: min(100%, 877px); display: flex; flex-wrap: wrap; opacity: {{c.op}}; visibility: {{c.vis}}; transform: {{c.tx}}; transform-origin: 50% 50%; transition: {{ease}}; pointer-events: {{c.pe}}">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: rgb(236 232 225 / .18); clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px)"><span style="position: absolute; inset: 1px; background: #0b0909; clip-path: polygon(23.6px 0, 100% 0, 100% calc(100% - 23.6px), calc(100% - 23.6px) 100%, 0 100%, 0 23.6px)"></span></span>
+<div style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 24px">
+<div style="padding: 1px; background: rgb(236 232 225 / .2); clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)">
+<div style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #161212; clip-path: polygon(9.6px 0, 100% 0, 100% 100%, 0 100%, 0 9.6px)">
+<img src="{{c.image}}" alt="{{c.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{c.position}}">
+</div>
+</div>
+</div>
+<div style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 26px 30px 24px 6px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">{{c.name}}</span><span style="color: rgb(236 232 225 / .55)">{{c.sub}}</span></span>
+<h3 style="margin: 0; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 32px; line-height: .95; text-wrap: balance">{{c.title}}</h3>
+</div>
+<p style="margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: rgb(236 232 225 / .66); text-wrap: pretty">{{c.body}}</p>
+<sc-if value="{{c.warn}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; white-space: nowrap; color: #ff6b72"><span aria-hidden="true" style="width: 8px; height: 8px; background: #e5303a"></span>IF YOU DIE, IT STAYS WHERE YOU FELL</span></sc-if>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding-top: 14px; border-top: 1px solid rgb(236 232 225 / .12)">
+<sc-for list="{{c.stats}}" as="s" hint-placeholder-count="2">
+<div style="display: flex; align-items: baseline; gap: 10px">
+<span style="font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 36px; line-height: .85">{{s.value}}</span>
+<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; color: rgb(236 232 225 / .6)">{{s.label}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-for>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div style="padding: 180px 0 0">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 12px">
+
+<div aria-live="polite" style="display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
+<span style="display: inline-flex; flex-direction: column; align-items: center; gap: 12px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">PROGRESSION</span><span style="color: rgb(236 232 225 / .55)">RANKS AND INSIGNIA · {{badge.index}}/09</span></span>
+<span style="display: inline-flex; align-items: center; gap: 18px; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: clamp(44px, 4.4vw, 64px); line-height: .9"><span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a"></span>{{badge.name}}<span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a"></span></span>
+</div>
+
+<div style="--s: clamp(220px, 24vw, 340px); position: relative; align-self: stretch; margin: 0 calc(50% - 50vw); height: calc(var(--s) + 40px); perspective: 1400px; overflow: hidden">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="9">
+<button type="button" aria-label="{{b.name}}" aria-pressed="{{b.selected}}" onClick="{{b.pick}}" style="position: absolute; top: 20px; left: 50%; width: var(--s); height: var(--s); margin-left: calc(var(--s) / -2); padding: 0; border: 0; background: transparent; cursor: pointer; transform: {{b.tx}}; opacity: {{b.op}}; visibility: {{b.vis}}; z-index: {{b.z}}; transition: transform .6s cubic-bezier(.22, .7, .2, 1), opacity .6s, visibility .6s">
+<span aria-hidden="true" style="position: absolute; inset: 0; background: {{b.border}}; clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px); transition: background .4s"><span style="position: absolute; inset: {{b.bw}}; background: {{b.fill}}; clip-path: {{b.innerClip}}; transition: background .4s"></span></span>
+<span aria-hidden="true" style="position: absolute; top: 18px; right: 20px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: {{b.numColor}}">{{b.num}}</span>
+<img src="{{b.image}}" alt="" style="position: absolute; top: 15%; left: 15%; width: 70%; height: 70%; object-fit: contain; filter: {{b.filter}}; transition: filter .6s">
+</button>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 32px">
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" aria-label="Previous badge" onClick="{{prev}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M6.5 1.5 3 5l3.5 3.5"></path></svg></button>
+<div style="position: relative; display: flex; align-items: center">
+<span aria-hidden="true" style="position: absolute; left: 20px; right: 20px; top: calc(50% - .5px); height: 1px; background: rgb(236 232 225 / .2)"></span>
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="9">
+<button type="button" aria-label="Show {{b.name}}" aria-pressed="{{b.selected}}" onClick="{{b.pick}}" style="position: relative; display: grid; place-items: center; width: 40px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer"><span aria-hidden="true" style="width: {{b.dotSize}}; height: {{b.dotSize}}; position: relative; z-index: 1; background: {{b.dotFill}}; box-shadow: inset 0 0 0 1px {{b.dotRing}}; transition: background .3s, width .3s, height .3s"></span></button>
+</sc-for>
+</div>
+<button type="button" aria-label="Next badge" onClick="{{next}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M3.5 1.5 7 5 3.5 8.5"></path></svg></button>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px">
+<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: rgb(236 232 225 / .6)">CONDITION</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{conditions}}" as="k" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{k.selected}}" onClick="{{k.pick}}" style="{{k.style}}">{{k.label}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1850}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { f: 0, selected: 4, condition: 0, paged: false };
+var self = this;
+this._phase = 0;
+this.tweenTo = function (target) {
+target = Math.max(0, Math.min(2, target));
+self._phase = target;
+if (self._raf) { cancelAnimationFrame(self._raf); self._raf = 0; }
+var from = self.state.f;
+if (Math.abs(target - from) < .001) return;
+var t0 = performance.now(), dur = 700;
+var step = function (now) {
+var k = Math.min(1, (now - t0) / dur);
+var ez = k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+self.setState({ f: from + (target - from) * ez });
+self._raf = k < 1 ? requestAnimationFrame(step) : 0;
+};
+self._raf = requestAnimationFrame(step);
+};
+this.geo = function () {
+var r = self._pin.getBoundingClientRect(), s = self._sc.getBoundingClientRect(), vh = self._sc.clientHeight;
+var h = Math.min(vh, 900), top = (vh - h) / 2;
+return { off: r.top - s.top - top, run: r.height - h };
+};
+this.onPageScroll = function () {
+if (!self._pin) return;
+var g = self.geo();
+if (g.run <= 0) return;
+var p = -g.off / g.run;
+var ph = p < 1 / 3 ? 0 : p < 2 / 3 ? 1 : 2;
+if (ph !== self._phase) self.tweenTo(ph);
+};
+this.goPhase = function (i) {
+if (!self._pin || !self.state.paged) { self.tweenTo(i); return; }
+var g = self.geo(), sc = self._sc;
+var y = sc.scrollTop + g.off + g.run * (i + .5) / 3;
+if (sc.__dsScrollTo) sc.__dsScrollTo(y); else sc.scrollTo({ top: y, behavior: 'smooth' });
+};
+this.unbind = function () {
+if (self._sc) self._sc.removeEventListener('scroll', self.onPageScroll);
+if (self._pin && self._pin.__dsOwner === self) self._pin.__dsOwner = null;
+self._sc = self._pin = null;
+};
+this.bind = function (el, force) {
+if (!el || el === self._pin || !el.closest) return;
+var sc = el.closest('[data-ds-page]');
+if (!sc) return;
+var owner = el.__dsOwner;
+if (owner && owner !== self) { if (!force) return; owner.unbind(); }
+self.unbind();
+self._pin = el; self._sc = sc; el.__dsOwner = self;
+sc.addEventListener('scroll', self.onPageScroll, { passive: true });
+if (!self.state.paged) self.setState({ paged: true });
+requestAnimationFrame(self.onPageScroll);
+};
+this.pinRef = function (el) { if (el) self.bind(el, true); };
+this.onProbe = function (e) { self.bind(e && e.currentTarget, true); };
+}
+componentDidMount() {
+var self = this;
+this._mt = setTimeout(function () {
+if (self._pin || typeof document === 'undefined') return;
+var els = Array.prototype.filter.call(document.querySelectorAll('[data-ds-pin]'), function (n) { return n.closest('[data-ds-page]') && !n.__dsOwner; });
+if (els.length === 1) self.bind(els[0], false);
+}, 500);
+}
+componentWillUnmount() {
+clearTimeout(this._mt);
+if (this._raf) cancelAnimationFrame(this._raf);
+this.unbind();
+}
+renderVals() {
+var PHASES = [
+{ num: '01', name: 'BREACH', sub: 'DEPLOY / BUNKER EXIT', title: 'DEPLOY WITH WHAT YOU CAN CARRY', body: 'Leave the bunker with your gear, your rig and nothing to spare. Every room in the zone is a fight: the infected, rival crews and KAZI patrols guarding the trial wards.', image: 'assets/2f9ea34f805d750b68576115ff35149d.jpg', alt: 'A squad breaching a lab door', position: '62% 50%',
+stats: [{ value: '05', label: 'INFECTED TYPES' }, { value: '03', label: 'RIVAL CREWS' }],
+items: [['WALKER', 'INFECTED'], ['RUNNER', 'INFECTED'], ['BRUTE', 'INFECTED'], ['BLOATER', 'INFECTED'], ['SCREAMER', 'INFECTED'], ['THE CLEANERS', 'CREW'], ['CAIRN PMC', 'CREW'], ['SCAVENGERS', 'CREW'], ['KAZI PATROLS', 'PATROL']] },
+{ num: '02', name: 'LOOT', sub: 'SEARCH / INVENTORY', title: 'SEARCH EVERYTHING. CARRY WHAT FITS.', body: 'Bodies, crates and lockers all hold something. Every item takes grid space and weight, and every gun you bring home can be stripped and rebuilt on the bench.', image: 'assets/08440bdf718e925081aff7be6fce3f44.jpg', alt: 'A loot table with rifles, cash and supplies', position: '55% 50%',
+stats: [{ value: '09', label: 'BADGE RANKS' }, { value: '03', label: 'ITEM CONDITIONS' }],
+items: [['RIFLES', 'WEAPON'], ['AMMO', 'WEAPON'], ['WEAPON PARTS', 'WEAPON'], ['MEDS', 'GEAR'], ['FOOD', 'GEAR'], ['ARMOUR', 'GEAR'], ['CASH', 'VALUE'], ['INTEL NOTES', 'INTEL'], ['KAZI BADGES', 'VALUE']] },
+{ num: '03', name: 'EXTRACT', sub: 'EXIT / BEFORE THE SIGNAL DROPS', title: 'GET OUT, OR LOSE IT ALL', body: 'Reach an exit before the signal drops. Make it out and everything you carried is yours. Go down, and it stays where you fell.', image: 'assets/3ddec52c860b172d69222a7fc4ce5766.jpg', alt: 'A squad running to an extraction helicopter', position: '35% 50%',
+warn: true, stats: [{ value: '05', label: 'TRADERS' }, { value: '12', label: 'BUNKER ROOMS' }],
+items: [['HELIPAD', 'EXIT'], ['BUNKER', 'BASE'], ['STORAGE', 'BASE'], ['IRON ANGEL', 'TRADER'], ['DR. KESTREL', 'TRADER'], ['MOTHER RUST', 'TRADER'], ['THE DEACON', 'TRADER'], ['MAJOR VOSS', 'TRADER'], ['CONTRACTS', 'BASE']] }
+];
+var BADGES = [
+{ name: 'KAZI PATCH', image: 'assets/0715e11e97bf00b15f0b96f42f316775.webp', text: 'Stitched on every KAZI operator’s helmet and shoulder. The company still issues them. Fewer people wear them proudly.' },
+{ name: 'RECRUIT', image: 'assets/064095d40c9a2cd12e03d0bf586f5634.webp', text: 'Issued on the first deployment. Records who wore it and who killed them.' },
+{ name: 'OPERATOR', image: 'assets/54265f44bd716e5f119178983e1b6cbd.webp', text: 'Records who wore it and who killed them. Contracts ask for them, traders buy them.' },
+{ name: 'SPECIALIST', image: 'assets/b0d4607480959dfe698518abecf4dc05.webp', text: 'Records who wore it and who killed them. Contracts ask for them, traders buy them.' },
+{ name: 'VETERAN', image: 'assets/7d7875c0d3df38d58ac7781ee2ed4ee4.webp', text: 'Records who wore it and who killed them. Contracts ask for them, traders buy them.' },
+{ name: 'ELITE', image: 'assets/ca54e4003cebd5e4777356739ced3759.webp', text: 'Records who wore it and who killed them. Contracts ask for them, traders buy them.' },
+{ name: 'GHOST', image: 'assets/c0b6f5cdebddc35ff93a531bc3b2f22e.webp', text: 'Records who wore it and who killed them. Contracts ask for them, traders buy them.' },
+{ name: 'PRAETORIAN', image: 'assets/a2f0c15755f2c88f96674c6132c7ee9b.webp', text: 'Worn by the founder’s bodyguards. Officially, the unit was disbanded.' },
+{ name: 'FOUNDER', image: 'assets/f1a2c7147384078fd4bbb2f7967bc3e2.webp', text: 'Kazi’s own badge. Officially, Kazi is dead.' }
+];
+var CONDITIONS = [
+{ label: 'PRISTINE', filter: 'none' },
+{ label: 'SCRATCHED', filter: 'grayscale(.35) contrast(1.25) brightness(.82)' },
+{ label: 'BLOODIED', filter: 'sepia(.6) saturate(2.4) hue-rotate(-35deg) brightness(.62) contrast(1.2)' }
+];
+var self = this;
+var sel = this.state.selected;
+var cond = this.state.condition;
+var NODE = [213, 664, 1115], W = 1328, CXM = 664;
+var row = 'position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; width: 100%; height: 112px; box-sizing: border-box; padding: 0 24px; border: 0; background: transparent; text-align: left; cursor: pointer; transition: filter .4s; ';
+var chip = 'display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px; border: 0; font-family: Share Tech Mono, ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; cursor: pointer; ';
+var smooth = function (t) { t = Math.min(1, Math.max(0, t)); return t * t * (3 - 2 * t); };
+var f = this.state.f;
+var cur = Math.round(f);
+var center = 4 + 9 * f;
+var sx = (213 + 451 * f).toFixed(1);
+var all = [];
+PHASES.forEach(function (P) { P.items.forEach(function (it) { all.push(it); }); });
+var rail = all.map(function (it, j) {
+var u = (j - center) / 4, au = Math.abs(u);
+var x = 664 + 554 * u, y = 62 + 44 * (1 - u * u);
+var w = Math.max(0, 1 - 2 * Math.abs(Math.floor(j / 9) - f));
+var o = (au <= 1 ? 1 - .55 * au : Math.max(0, (1.35 - au) / .35 * .45)) * w;
+return {
+d: 'M' + sx + ' 0 C ' + sx + ' ' + (y * .6).toFixed(1) + ', ' + x.toFixed(1) + ' ' + (y * .3).toFixed(1) + ', ' + x.toFixed(1) + ' ' + y.toFixed(1),
+left: (x / W * 100).toFixed(2) + '%',
+top: y.toFixed(1) + 'px',
+o: o.toFixed(3),
+vis: o > 0 ? 'visible' : 'hidden',
+label: it[0], tag: it[1]
+};
+});
+var cards = PHASES.map(function (P, pi) {
+var dlt = pi - f, th = dlt * 10 * Math.PI / 180, R = 6000;
+var op = Math.max(0, 1 - Math.abs(dlt) * 1.25);
+return Object.assign({}, P, {
+op: op.toFixed(3),
+vis: op > 0 ? 'visible' : 'hidden',
+tx: 'translate(' + (Math.sin(th) * R).toFixed(1) + 'px, ' + (-(1 - Math.cos(th)) * R).toFixed(1) + 'px) rotate(' + (dlt * -10).toFixed(2) + 'deg)',
+hidden: pi !== cur,
+pe: pi === cur ? 'auto' : 'none',
+warn: !!P.warn
+});
+});
+return {
+pinRef: this.pinRef,
+pinH: this.state.paged ? 'calc(var(--h) * 4)' : 'auto',
+animH: this.state.paged ? 'var(--h)' : 'auto',
+animPad: this.state.paged ? '64px 0' : '0',
+onProbe: this.onProbe,
+progPct: ((f + 1) / 3 * 100).toFixed(1) + '%',
+rail: rail,
+cards: cards,
+ease: 'none',
+phases: PHASES.map(function (p, i) {
+var on = i === cur;
+return {
+num: p.num, name: p.name, sub: p.sub,
+active: on,
+dotOp: on ? '1' : '0',
+rowStyle: row + (on ? 'filter: drop-shadow(0 0 14px rgb(229 48 58 / .35))' : 'filter: none'),
+border: on ? '#e5303a' : 'rgb(236 232 225 / .16)',
+bw: on ? '2px' : '1px',
+fill: on ? '#140707' : '#090707',
+innerClip: on ? 'polygon(15.2px 0, 100% 0, 100% calc(100% - 15.2px), calc(100% - 15.2px) 100%, 0 100%, 0 15.2px)' : 'polygon(15.6px 0, 100% 0, 100% calc(100% - 15.6px), calc(100% - 15.6px) 100%, 0 100%, 0 15.6px)',
+nameColor: on ? '#ece8e1' : 'rgb(236 232 225 / .42)',
+metaColor: on ? '#ff6b72' : 'rgb(236 232 225 / .5)',
+pick: function (e) {
+self.goPhase(i);
+}
+};
+}),
+badge: Object.assign({ index: String(sel + 1).padStart(2, '0') }, BADGES[sel]),
+badges: BADGES.map(function (b, i) {
+var on = i === sel, o = i - sel, ab = Math.abs(o), sg = o < 0 ? -1 : 1;
+var k = ab === 0 ? 0 : sg * (1.08 + (ab - 1) * .9);
+return {
+name: b.name,
+image: b.image,
+selected: on,
+num: String(i + 1).padStart(2, '0'),
+tx: 'translateX(calc(var(--s) * ' + k.toFixed(2) + ')) rotateY(' + (ab ? -sg * 24 : 0) + 'deg) scale(' + (ab ? .84 : 1) + ')',
+op: ab === 0 ? 1 : ab === 1 ? .8 : ab === 2 ? .45 : ab === 3 ? .18 : 0,
+vis: ab > 3 ? 'hidden' : 'visible',
+z: 10 - ab,
+border: on ? '#e5303a' : 'rgb(236 232 225 / .18)',
+bw: on ? '2px' : '1px',
+fill: on ? '#140707' : '#090707',
+innerClip: on ? 'polygon(21.2px 0, 100% 0, 100% calc(100% - 21.2px), calc(100% - 21.2px) 100%, 0 100%, 0 21.2px)' : 'polygon(21.6px 0, 100% 0, 100% calc(100% - 21.6px), calc(100% - 21.6px) 100%, 0 100%, 0 21.6px)',
+numColor: on ? '#ff6b72' : 'rgb(236 232 225 / .4)',
+filter: on ? CONDITIONS[cond].filter : 'grayscale(.6) brightness(.55)',
+dotSize: on ? '12px' : '8px',
+dotFill: on ? '#e5303a' : i < sel ? '#8c8985' : '#090707',
+dotRing: on ? '#e5303a' : i < sel ? '#8c8985' : '#5f5d5a',
+pick: function () { self.setState({ selected: i }); }
+};
+}),
+prev: function () { self.setState({ selected: (sel + BADGES.length - 1) % BADGES.length }); },
+next: function () { self.setState({ selected: (sel + 1) % BADGES.length }); },
+arrow: 'display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: #ece8e1; box-shadow: inset 0 0 0 1px rgb(236 232 225 / .2); cursor: pointer',
+conditions: CONDITIONS.map(function (k, i) {
+var on = i === cond;
+return {
+label: k.label,
+selected: on,
+style: chip + (on ? 'background: #e5303a; color: #120607' : 'background: transparent; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .55); color: #ece8e1'),
+pick: function () { self.setState({ condition: i }); }
+};
+})
+};
+}
+}
+</script>
+</body>
+</html>

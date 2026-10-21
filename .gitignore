@@ -1,0 +1,3 @@
+node_modules/
+# Claude Design runtime, kept local only
+design/support.js

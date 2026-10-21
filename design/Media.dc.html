@@ -22,21 +22,46 @@ body{margin:0;background:#060404}
 .dsm-row:hover{background:rgb(229 48 58 / .05)}
 .dsm-row .dsm-go{transition:transform .25s,color .25s}
 .dsm-row:hover .dsm-go{transform:translate(3px,-3px);color:#ff4f57}
-.dsm-btn{transition:filter .2s}
-.dsm-btn:hover{filter:brightness(1.15)}
 @media (prefers-reduced-motion: reduce){.dsm-blink{animation:none}}
-@media (max-width: 900px){.dsm-gal{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.dsm-gal>*{grid-column:auto !important;grid-row:auto !important;align-self:start !important}.dsm-news>*{grid-column:1 / -1 !important}}
+.ds-bf,.ds-bo,.ds-bt,.ds-bo2,.ds-bo2>span,.ds-bo2>span>span{transition:background-color .2s,color .2s,box-shadow .2s}
+.ds-bf:hover,.ds-bf:focus-visible{background-color:#c4252e !important;color:#120607 !important}
+.ds-bo:hover,.ds-bo:focus-visible{background-color:#e5303a !important;color:#120607 !important;box-shadow:inset 0 0 0 1px #e5303a !important;text-shadow:none !important}
+.ds-bt:not([aria-pressed="true"]):hover{background-color:rgb(229 48 58 / .22) !important;box-shadow:inset 0 0 0 1px #e5303a !important;color:#ffffff !important}
+.ds-bo2:hover,.ds-bo2:focus-visible{color:#120607 !important}.ds-bo2:hover>span:first-child,.ds-bo2:hover>span:first-child>span{background-color:#e5303a !important}
+@media (max-width:1099px){
+.dsm-wrap{gap:120px !important}
+.dsm-gal{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:16px !important}
+.dsm-gal>*{grid-column:auto !important;grid-row:auto !important;align-self:start !important}
+.dsm-gal>.dsm-intro{grid-column:1 / -1 !important;flex-direction:row !important;align-items:flex-end !important;margin-bottom:8px}
+.dsm-news{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+.dsm-news>:nth-child(1){grid-column:span 1 !important}
+.dsm-news>:nth-child(2){grid-column:span 2 !important}
+.dsm-news>:nth-child(3){grid-column:span 1 !important}
+.dsm-title{font-size:28px !important}
+}
+@media (max-width:699px){
+.dsm-wrap{gap:96px !important}
+.dsm-gal{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:12px !important}
+.dsm-news{grid-template-columns:minmax(0,1fr) !important;gap:16px !important;padding:24px 0 !important}
+.dsm-news>:nth-child(1){grid-column:1 !important;grid-row:1;flex-direction:row !important;align-items:center !important}
+.dsm-news>:nth-child(3){grid-column:1 !important;grid-row:2;aspect-ratio:16 / 9 !important}
+.dsm-news>:nth-child(2){grid-column:1 !important;grid-row:3}
+.dsm-title{font-size:24px !important}
+.dsm-title svg{display:none}
+.dsm-lbbar{flex-wrap:wrap}
+.dsm-lb{padding:24px 12px !important}
+}
 </style>
 </helmet>
 <div style="width: 100%; background: #060404; color: #ece8e1; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased">
-<div style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(20px, 4vw, 56px); display: flex; flex-direction: column; gap: 180px">
+<div class="dsm-wrap" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(20px, 4vw, 56px); display: flex; flex-direction: column; gap: 180px">
 
 <section id="media" style="display: flex; flex-direction: column; gap: 32px">
 
 <div class="dsm-gal" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 32px 24px; align-items: start">
-<div style="grid-column: 1 / span 1; grid-row: 1; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<div class="dsm-intro" style="grid-column: 1 / span 1; grid-row: 1; align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
 <span style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">MEDIA</span><span style="color: rgb(236 232 225 / .55)">GALLERY · {{count}} FRAMES</span></span>
-<a href="#press" class="dsm-btn" style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 48px; padding: 0 16px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: .12em; color: #ece8e1; text-decoration: none; white-space: nowrap">
+<a href="#press" class="dsm-btn ds-bo2" style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 10px; height: 48px; padding: 0 16px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: .12em; color: #ece8e1; text-decoration: none; white-space: nowrap">
 <span aria-hidden="true" style="position: absolute; inset: 0; background: rgb(229 48 58 / .6); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)"><span style="position: absolute; inset: 1px; background: #060404; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 9.6px), calc(100% - 9.6px) 100%, 0 100%)"></span></span>
 <span style="position: relative">PRESS KIT</span><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="position: relative; width: 13px; height: 13px"><path d="M8 2v11M4 9l4 4 4-4"></path></svg></a>
 </div>
@@ -49,7 +74,7 @@ body{margin:0;background:#060404}
 </div>
 
 <sc-if value="{{box.open}}" hint-placeholder-val="{{ false }}">
-<div role="dialog" aria-modal="true" aria-label="{{box.title}}" style="position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 48px 24px; box-sizing: border-box; background: rgb(6 4 4 / .94)">
+<div role="dialog" aria-modal="true" aria-label="{{box.title}}" class="dsm-lb" style="position: fixed; inset: 0; z-index: 50; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 48px 24px; box-sizing: border-box; background: rgb(6 4 4 / .94)">
 <div style="position: relative; max-width: min(1200px, 100%); max-height: calc(100vh - 160px); aspect-ratio: 16 / 9; width: 100%; padding: 1px; box-sizing: border-box; background: rgb(229 48 58 / .4); clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px)">
 <div style="position: relative; width: 100%; height: 100%; overflow: hidden; background: #0c0405; clip-path: polygon(23.6px 0, 100% 0, 100% calc(100% - 23.6px), calc(100% - 23.6px) 100%, 0 100%, 0 23.6px)">
 <img src="{{box.img}}" alt="{{box.title}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{box.pos}}">
@@ -57,12 +82,12 @@ body{margin:0;background:#060404}
 <div style="position: absolute; top: 20px; left: 40px; display: inline-flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .14em; color: rgb(236 232 225 / .8)"><span aria-hidden="true" class="dsm-blink" style="width: 8px; height: 8px; background: #e5303a"></span>REC · IMG {{box.num}} / {{count}}</div>
 </div>
 </div>
-<div style="width: min(1200px, 100%); display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Share Tech Mono', ui-monospace, monospace">
+<div class="dsm-lbbar" style="width: min(1200px, 100%); display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: 'Share Tech Mono', ui-monospace, monospace">
 <span style="font-size: 18px; letter-spacing: .08em; color: #ece8e1">{{box.title}}<span style="margin-left: 14px; font-size: 12px; letter-spacing: .14em; color: rgb(236 232 225 / .55)">{{box.place}}</span></span>
 <span style="display: flex; gap: 8px">
-<button type="button" aria-label="Previous image" onClick="{{prev}}" style="{{ctl}}">‹</button>
-<button type="button" aria-label="Next image" onClick="{{next}}" style="{{ctl}}">›</button>
-<button type="button" aria-label="Close" onClick="{{close}}" style="{{ctl}}">✕</button>
+<button type="button" aria-label="Previous image" class="ds-bo" onClick="{{prev}}" style="{{ctl}}">‹</button>
+<button type="button" aria-label="Next image" class="ds-bo" onClick="{{next}}" style="{{ctl}}">›</button>
+<button type="button" aria-label="Close" class="ds-bo" onClick="{{close}}" style="{{ctl}}">✕</button>
 </span>
 </div>
 </div>
@@ -72,7 +97,7 @@ body{margin:0;background:#060404}
 <section id="news" style="display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px">
 <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">NEWS</span><span style="color: rgb(236 232 225 / .55)">TRANSMISSIONS</span></span>
-<a href="https://x.com/DeadSignalHQ" class="dsm-btn" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">FOLLOW @DEADSIGNALHQ<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" style="width: 12px; height: 12px"><path d="M4 12L12 4M6 4h6v6"></path></svg></a>
+<a href="https://x.com/DeadSignalHQ" class="dsm-btn ds-bf" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">FOLLOW @DEADSIGNALHQ<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" style="width: 12px; height: 12px"><path d="M4 12L12 4M6 4h6v6"></path></svg></a>
 </div>
 
 <div style="display: flex; flex-direction: column; border-top: 1px solid rgb(229 48 58 / .3)">
@@ -83,7 +108,7 @@ body{margin:0;background:#060404}
 <span style="padding: 3px 7px; font-size: 11px; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .6); color: #ff6b72">{{n.tag}}</span>
 </div>
 <div style="grid-column: span 4; display: flex; flex-direction: column; gap: 10px">
-<span style="display: flex; align-items: flex-start; gap: 12px; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: .01em">{{n.title}}<svg class="dsm-go" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" style="flex: none; width: 14px; height: 14px; margin-top: 4px; color: rgb(236 232 225 / .4)"><path d="M4 12L12 4M6 4h6v6"></path></svg></span>
+<span class="dsm-title" style="display: flex; align-items: flex-start; gap: 12px; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: .01em">{{n.title}}<svg class="dsm-go" viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" style="flex: none; width: 14px; height: 14px; margin-top: 4px; color: rgb(236 232 225 / .4)"><path d="M4 12L12 4M6 4h6v6"></path></svg></span>
 <span style="max-width: 620px; font-size: 16px; line-height: 1.5; color: rgb(236 232 225 / .66); text-wrap: pretty">{{n.text}}</span>
 </div>
 <div style="grid-column: span 1; position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0c0405; clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)">

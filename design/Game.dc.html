@@ -16,7 +16,44 @@ a{color:inherit}a:hover{color:#ffffff}
 @keyframes ds-spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
 @media (prefers-reduced-motion: reduce){.ds-medal{animation:none !important}.ds-anim,.ds-anim *{transition:none !important}}
 [data-ds-scroller]::-webkit-scrollbar{display:none}
-@media (max-width: 900px){.ds-fan{display:none !important}.ds-loop [role=tablist]{grid-template-columns:minmax(0,1fr) !important;margin-bottom:24px}}
+.ds-mhead{display:none}
+.ds-bf,.ds-bo,.ds-bt,.ds-bo2,.ds-bo2>span,.ds-bo2>span>span{transition:background-color .2s,color .2s,box-shadow .2s}
+.ds-bf:hover,.ds-bf:focus-visible{background-color:#c4252e !important;color:#120607 !important}
+.ds-bo:hover,.ds-bo:focus-visible{background-color:#e5303a !important;color:#120607 !important;box-shadow:inset 0 0 0 1px #e5303a !important;text-shadow:none !important}
+.ds-bt:not([aria-pressed="true"]):hover{background-color:rgb(229 48 58 / .22) !important;box-shadow:inset 0 0 0 1px #e5303a !important;color:#ffffff !important}
+.ds-bo2:hover,.ds-bo2:focus-visible{color:#120607 !important}.ds-bo2:hover>span:first-child,.ds-bo2:hover>span:first-child>span{background-color:#e5303a !important}
+.ds-ph[aria-selected="false"]:hover>span:first-child{background-color:rgb(236 232 225 / .38) !important}
+.ds-ph[aria-selected="false"]:hover>span:nth-child(2){color:rgb(236 232 225 / .8) !important}
+.ds-ph[aria-selected="false"]:hover h2{color:#d8d2c8 !important}
+@media (max-width:1099px){
+.ds-fan{display:none !important}
+.ds-loop [role=tablist]{margin-bottom:8px}
+.ds-ph{height:96px !important;padding:0 18px !important}
+.ds-ph h2{font-size:44px !important}
+.ds-psub{display:none}
+.ds-bw{padding-top:120px !important}
+}
+@media (max-width:699px){
+.ds-gh{padding-bottom:8px !important}
+.ds-gh .ds-prog{display:none !important}
+.ds-loop [role=tablist]{gap:8px !important}
+.ds-loop [role=tablist]{display:none !important}
+.ds-mhead{display:flex !important}
+.ds-loop [role=tabpanel]{grid-template-columns:minmax(0,1fr) !important}
+.ds-card{min-width:0;width:100% !important}
+.ds-ctag{display:none !important}
+.ds-cif,.ds-cii{clip-path:none !important}
+.ds-anim{padding:12px 0 !important;gap:14px !important}
+.ds-card{flex-direction:column;flex-wrap:nowrap !important}
+.ds-ci{flex:none !important;padding:12px !important}
+.ds-ct{flex:none !important;padding:4px 16px 16px !important;gap:28px !important}
+.ds-ct h3{font-size:26px !important}
+.ds-ct p{margin-top:10px !important}
+.ds-bw{padding-top:96px !important}
+.ds-dots>button{width:26px !important}
+.ds-dots>span{left:13px !important;right:13px !important}
+.ds-clab{flex-basis:100%;text-align:center}
+}
 </style>
 </helmet>
 <section id="game" style="position: relative; width: 100%; overflow-x: clip; background: #060404; color: #ece8e1; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased">
@@ -26,18 +63,18 @@ a{color:inherit}a:hover{color:#ffffff}
 <div data-ds-pin="" ref="{{pinRef}}" onPointerEnter="{{onProbe}}" style="--h: min(100vh, 900px); position: relative; height: {{pinH}}">
 <div class="ds-anim" style="position: sticky; top: calc((100vh - var(--h)) / 2); height: {{animH}}; box-sizing: border-box; padding: {{animPad}}; display: flex; flex-direction: column; justify-content: center; gap: 20px">
 
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; padding-bottom: 28px">
+<div class="ds-gh" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; padding-bottom: 28px">
 <span style="display: inline-flex; align-items: center; gap: 10px"><span style="padding: 3px 7px; background: #e5303a; color: #120607">THE GAMEPLAY</span><span style="color: rgb(236 232 225 / .55)">ONE RAID, THREE PHASES</span></span>
-<span aria-hidden="true" style="position: relative; width: 200px; height: 2px; background: rgb(236 232 225 / .16)"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{progPct}}; background: #e5303a"></span></span>
+<span aria-hidden="true" class="ds-prog" style="position: relative; width: 200px; height: 2px; background: rgb(236 232 225 / .16)"><span style="position: absolute; left: 0; top: 0; bottom: 0; width: {{progPct}}; background: #e5303a"></span></span>
 </div>
 
 <div class="ds-loop" style="position: relative; display: flex; flex-direction: column">
 
 <div role="tablist" aria-label="Raid phases" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
 <sc-for list="{{phases}}" as="p" hint-placeholder-count="3">
-<button type="button" role="tab" aria-selected="{{p.active}}" onClick="{{p.pick}}" style="{{p.rowStyle}}">
+<button type="button" role="tab" class="ds-ph" aria-selected="{{p.active}}" onClick="{{p.pick}}" style="{{p.rowStyle}}">
 <span aria-hidden="true" style="position: absolute; inset: 0; background: {{p.border}}; clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px); transition: background-color .4s"><span style="position: absolute; inset: {{p.bw}}; background: {{p.fill}}; clip-path: {{p.innerClip}}; transition: background-color .4s"></span></span>
-<span style="position: relative; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: {{p.metaColor}}; transition: color .4s">{{p.num}} · {{p.sub}}</span>
+<span style="position: relative; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: {{p.metaColor}}; transition: color .4s">{{p.num}}<span class="ds-psub"> · {{p.sub}}</span></span>
 <h2 style="position: relative; margin: 0; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 60px; line-height: .9; color: {{p.nameColor}}; transition: color .4s">{{p.name}}.</h2>
 <span aria-hidden="true" style="position: absolute; left: 50%; bottom: -5px; width: 8px; height: 8px; margin-left: -4px; background: #e5303a; box-shadow: 0 0 10px rgb(229 48 58 / .8); opacity: {{p.dotOp}}; transition: opacity .4s"></span>
 </button>
@@ -62,19 +99,28 @@ a{color:inherit}a:hover{color:#ffffff}
 
 <div role="tabpanel" aria-live="polite" style="display: grid; justify-items: center">
 <sc-for list="{{cards}}" as="c" hint-placeholder-count="3">
-<div aria-hidden="{{c.hidden}}" style="position: relative; grid-area: 1 / 1; width: min(100%, 877px); display: flex; flex-wrap: wrap; opacity: {{c.op}}; visibility: {{c.vis}}; transform: {{c.tx}}; transform-origin: 50% 50%; transition: {{ease}}; pointer-events: {{c.pe}}">
+<div aria-hidden="{{c.hidden}}" class="ds-card" style="position: relative; grid-area: 1 / 1; width: min(100%, 877px); display: flex; flex-wrap: wrap; opacity: {{c.op}}; visibility: {{c.vis}}; transform: {{c.tx}}; transform-origin: 50% 50%; transition: {{ease}}; pointer-events: {{c.pe}}">
 <span aria-hidden="true" style="position: absolute; inset: 0; background: rgb(236 232 225 / .18); clip-path: polygon(24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%, 0 24px)"><span style="position: absolute; inset: 1px; background: #0b0909; clip-path: polygon(23.6px 0, 100% 0, 100% calc(100% - 23.6px), calc(100% - 23.6px) 100%, 0 100%, 0 23.6px)"></span></span>
-<div style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 24px">
-<div style="padding: 1px; background: rgb(236 232 225 / .2); clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)">
-<div style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #161212; clip-path: polygon(9.6px 0, 100% 0, 100% 100%, 0 100%, 0 9.6px)">
+<div class="ds-mhead" style="position: relative; margin: 0; height: 64px; box-sizing: border-box; padding: 0 18px 0 22px; align-items: center; justify-content: space-between; gap: 12px; background: #e5303a; color: #120607; clip-path: polygon(24px 0, 100% 0, 100% 100%, 0 100%, 0 24px)">
+<div style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.sub}}</span>
+<span style="font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 32px; line-height: .9">{{c.name}}.</span>
+</div>
+<span aria-hidden="true" style="flex: none; display: flex; gap: 6px">
+<sc-for list="{{c.dots}}" as="d" hint-placeholder-count="3"><span style="width: 8px; height: 8px; background: {{d.fill}}; box-shadow: inset 0 0 0 1px #120607"></span></sc-for>
+</span>
+</div>
+<div class="ds-ci" style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 24px">
+<div class="ds-cif" style="padding: 1px; background: rgb(236 232 225 / .2); clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px)">
+<div class="ds-cii" style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #161212; clip-path: polygon(9.6px 0, 100% 0, 100% 100%, 0 100%, 0 9.6px)">
 <img src="{{c.image}}" alt="{{c.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{c.position}}">
 </div>
 </div>
 </div>
-<div style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 26px 30px 24px 6px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+<div class="ds-ct" style="position: relative; flex: 1 1 340px; min-width: 0; box-sizing: border-box; padding: 26px 30px 24px 6px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
 <div style="display: flex; flex-direction: column">
 <div style="display: flex; flex-direction: column; gap: 10px">
-<span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">{{c.name}}</span><span style="color: rgb(236 232 225 / .55)">{{c.sub}}</span></span>
+<span class="ds-ctag" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">{{c.name}}</span><span style="color: rgb(236 232 225 / .55)">{{c.sub}}</span></span>
 <h3 style="margin: 0; font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 32px; line-height: .95; text-wrap: balance">{{c.title}}</h3>
 </div>
 <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: rgb(236 232 225 / .66); text-wrap: pretty">{{c.body}}</p>
@@ -98,7 +144,7 @@ a{color:inherit}a:hover{color:#ffffff}
 </div>
 </div>
 
-<div style="padding: 180px 0 0">
+<div class="ds-bw" style="padding: 180px 0 0">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 12px">
 
 <div aria-live="polite" style="display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center">
@@ -118,21 +164,21 @@ a{color:inherit}a:hover{color:#ffffff}
 
 <div style="display: flex; flex-direction: column; align-items: center; gap: 32px">
 <div style="display: flex; align-items: center; gap: 8px">
-<button type="button" aria-label="Previous badge" onClick="{{prev}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M6.5 1.5 3 5l3.5 3.5"></path></svg></button>
-<div style="position: relative; display: flex; align-items: center">
+<button type="button" class="ds-bt" aria-label="Previous badge" onClick="{{prev}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M6.5 1.5 3 5l3.5 3.5"></path></svg></button>
+<div class="ds-dots" style="position: relative; display: flex; align-items: center">
 <span aria-hidden="true" style="position: absolute; left: 20px; right: 20px; top: calc(50% - .5px); height: 1px; background: rgb(236 232 225 / .2)"></span>
 <sc-for list="{{badges}}" as="b" hint-placeholder-count="9">
 <button type="button" aria-label="Show {{b.name}}" aria-pressed="{{b.selected}}" onClick="{{b.pick}}" style="position: relative; display: grid; place-items: center; width: 40px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer"><span aria-hidden="true" style="width: {{b.dotSize}}; height: {{b.dotSize}}; position: relative; z-index: 1; background: {{b.dotFill}}; box-shadow: inset 0 0 0 1px {{b.dotRing}}; transition: background .3s, width .3s, height .3s"></span></button>
 </sc-for>
 </div>
-<button type="button" aria-label="Next badge" onClick="{{next}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M3.5 1.5 7 5 3.5 8.5"></path></svg></button>
+<button type="button" class="ds-bt" aria-label="Next badge" onClick="{{next}}" style="{{arrow}}"><svg viewBox="0 0 10 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 10px"><path d="M3.5 1.5 7 5 3.5 8.5"></path></svg></button>
 </div>
 
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px">
-<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: rgb(236 232 225 / .6)">CONDITION</span>
+<span class="ds-clab" style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: rgb(236 232 225 / .6)">CONDITION</span>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{conditions}}" as="k" hint-placeholder-count="3">
-<button type="button" aria-pressed="{{k.selected}}" onClick="{{k.pick}}" style="{{k.style}}">{{k.label}}</button>
+<button type="button" class="ds-bt" aria-pressed="{{k.selected}}" onClick="{{k.pick}}" style="{{k.style}}">{{k.label}}</button>
 </sc-for>
 </div>
 </div>
@@ -282,7 +328,8 @@ vis: op > 0 ? 'visible' : 'hidden',
 tx: 'translate(' + (Math.sin(th) * R).toFixed(1) + 'px, ' + (-(1 - Math.cos(th)) * R).toFixed(1) + 'px) rotate(' + (dlt * -10).toFixed(2) + 'deg)',
 hidden: pi !== cur,
 pe: pi === cur ? 'auto' : 'none',
-warn: !!P.warn
+warn: !!P.warn,
+dots: [0, 1, 2].map(function (k) { return { fill: k === pi ? '#120607' : 'transparent' }; })
 });
 });
 return {

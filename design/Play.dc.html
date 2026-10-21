@@ -16,7 +16,15 @@ a{color:#ece7dc}a:hover{color:#f2a93b}
 [data-ds-page]>*,[data-ds-page]>*>*{flex-shrink:0}
 .ds-grain{position:fixed;inset:-60%;z-index:40;pointer-events:none;background-image:url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');background-size:240px 240px;mix-blend-mode:hard-light;animation:ds-grain 1s steps(8,end) infinite}
 @keyframes ds-grain{0%{transform:translate(0,0)}12%{transform:translate(-6%,3%)}25%{transform:translate(4%,-5%)}37%{transform:translate(-2%,6%)}50%{transform:translate(5%,2%)}62%{transform:translate(-5%,-3%)}75%{transform:translate(3%,5%)}87%{transform:translate(-4%,-6%)}100%{transform:translate(0,0)}}
+[data-ds-curon],[data-ds-curon] *{cursor:none !important}
+.ds-cur{position:fixed;left:0;top:0;z-index:61;pointer-events:none;opacity:0;transition:opacity .2s}
+.ds-cur svg{position:absolute;left:-3px;top:-3px;width:26px;height:26px;overflow:visible;transition:transform .18s cubic-bezier(.2,.7,.2,1);transform-origin:3px 3px}
+.ds-cur path{fill:#2a0b0d;stroke:#e5303a;stroke-width:1.5;stroke-linejoin:round;transition:fill .15s}
+.ds-cur[data-hov] path{fill:#e5303a;stroke:#ff4f57}
+.ds-cur[data-dn] svg{transform:scale(.86)}
 @media (prefers-reduced-motion: reduce){.ds-grain{animation:none}}
+@media (max-width:1099px){[data-ds-page]{gap:120px !important}}
+@media (max-width:699px){[data-ds-page]{gap:96px !important}}
 </style>
 </helmet>
 <div data-ds-page="" ref="{{pageRef}}" style="width: 100%; height: 100vh; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; gap: 180px; background: #060404; color: #ece7dc; font-family: Archivo, system-ui, sans-serif">
@@ -27,8 +35,9 @@ a{color:#ece7dc}a:hover{color:#f2a93b}
 <dc-import name="Final" hint-size="100%,3000px"></dc-import>
 </div>
 <div aria-hidden="true" class="ds-grain" style="opacity: {{grainOp}}"></div>
+<div aria-hidden="true" data-ds-cur="" class="ds-cur"><svg viewBox="-3 -3 29 29"><path d="M0 0 L22.2 7.5 L11.7 11.6 L8.2 22.2 Z"></path></svg></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;grain&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;default&quot;:0.75,&quot;section&quot;:&quot;FX&quot;},&quot;idle&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;default&quot;:0.3,&quot;section&quot;:&quot;FX&quot;},&quot;scroll&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;default&quot;:1.3,&quot;section&quot;:&quot;FX&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;grain&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;default&quot;:0.75,&quot;section&quot;:&quot;FX&quot;},&quot;idle&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.05,&quot;default&quot;:0.3,&quot;section&quot;:&quot;FX&quot;},&quot;scroll&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;default&quot;:1.3,&quot;section&quot;:&quot;FX&quot;},&quot;cursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;FX&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
 class Component extends DCLogic {
 constructor(props) {
 super(props);
@@ -70,7 +79,16 @@ var turb = mk('feTurbulence', { type: 'fractalNoise', baseFrequency: '0 0.04', n
 var ct = mk('feComponentTransfer', { in: 't', result: 'm' }, f);
 var fr = mk('feFuncR', { type: 'discrete', tableValues: '.5' }, ct);
 mk('feFuncG', { type: 'linear', slope: '0', intercept: '.5' }, ct);
-var disp = mk('feDisplacementMap', { in: 'SourceGraphic', in2: 'm', scale: '0', xChannelSelector: 'R', yChannelSelector: 'G', result: 'd' }, f);
+var disp = mk('feDisplacementMap', { in: 'SourceGraphic', in2: 'm', scale: '0', xChannelSelector: 'R', yChannelSelector: 'G', result: 'd1' }, f);
+var turb2 = mk('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.004 0.05', numOctaves: '1', seed: '3', result: 't2' }, f);
+var ct2 = mk('feComponentTransfer', { in: 't2', result: 'w' }, f);
+mk('feFuncG', { type: 'linear', slope: '0', intercept: '.5' }, ct2);
+mk('feFuncA', { type: 'linear', slope: '0', intercept: '1' }, ct2);
+var img = mk('feImage', { href: 'data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3CradialGradient id=%22g%22%3E%3Cstop offset=%220%22 stop-color=%22%23fff%22/%3E%3Cstop offset=%22.45%22 stop-color=%22%23999%22/%3E%3Cstop offset=%221%22 stop-color=%22%23000%22/%3E%3C/radialGradient%3E%3Crect width=%22100%22 height=%22100%22 fill=%22url(%23g)%22/%3E%3C/svg%3E', x: '-999', y: '-999', width: '420', height: '300', preserveAspectRatio: 'none', result: 'gi' }, f);
+mk('feFlood', { 'flood-color': '#000', result: 'blk' }, f);
+mk('feComposite', { in: 'gi', in2: 'blk', operator: 'over', result: 'mk' }, f);
+mk('feComposite', { in: 'w', in2: 'mk', operator: 'arithmetic', k1: '1', k2: '0', k3: '-.5', k4: '.5', result: 'm2' }, f);
+var disp2 = mk('feDisplacementMap', { in: 'd1', in2: 'm2', scale: '0', xChannelSelector: 'R', yChannelSelector: 'G', result: 'd' }, f);
 mk('feColorMatrix', { in: 'd', type: 'matrix', values: '1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0', result: 'r' }, f);
 var or = mk('feOffset', { in: 'r', dx: '0', dy: '0', result: 'ro' }, f);
 mk('feColorMatrix', { in: 'd', type: 'matrix', values: '0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0', result: 'c' }, f);
@@ -78,7 +96,7 @@ var oc = mk('feOffset', { in: 'c', dx: '0', dy: '0', result: 'co' }, f);
 mk('feBlend', { in: 'ro', in2: 'co', mode: 'screen', result: 'b' }, f);
 var oj = mk('feOffset', { in: 'b', dx: '0', dy: '0' }, f);
 host.appendChild(svg);
-self.fx = { svg: svg, turb: turb, fr: fr, disp: disp, or: or, oc: oc, oj: oj };
+self.fx = { svg: svg, turb: turb, fr: fr, disp: disp, or: or, oc: oc, oj: oj, turb2: turb2, img: img, disp2: disp2 };
 return self.fx;
 };
 this.num = function (v, d) { var n = parseFloat(v); return isNaN(n) ? d : n; };
@@ -93,16 +111,30 @@ this.glLoop = function (now) {
 self.glRaf = requestAnimationFrame(self.glLoop);
 var el = self.el, fx = self.mkFx(), R = Math.random;
 if (!el || !fx) return;
-var idle = self.num(self.props.idle, .5), g = self.g, host = el.parentNode;
+var idle = self.num(self.props.idle, .5), g = self.g, ms = self.ms;
+if (el.querySelector('[aria-modal="true"]')) { el.style.filter = ''; return; }
+var cursorOn = ms > .02;
+if (cursorOn) {
+var br = el.getBoundingClientRect();
+fx.img.setAttribute('x', (self.px - br.left - 210).toFixed(0)); fx.img.setAttribute('y', (self.py - br.top - 150).toFixed(0));
+fx.turb2.setAttribute('seed', String(1 + Math.floor(R() * 999)));
+fx.disp2.setAttribute('scale', (ms * 9).toFixed(1));
+self.ms *= .92;
+} else if (self.ms) { self.ms = 0; fx.disp2.setAttribute('scale', '0'); fx.img.setAttribute('x', '-999'); }
+var tick = true;
 if (g < .03) {
 self.g = g = 0;
-if (now - self.idleT < 80) return;
+if (now - self.idleT < 80) tick = false;
+else {
 self.idleT = now;
 if (self.burst > 0) { self.burst--; g = (.2 + R() * .2) * Math.min(1, idle * 2); }
 else if (R() < .035 * idle * 2) self.burst = 2 + Math.floor(R() * 3);
+}
 } else self.g *= .86;
 var e = g + idle * .2;
-if (e < .01 || el.querySelector('[aria-modal="true"]')) { el.style.filter = ''; return; }
+if (e < .01 && !cursorOn) { el.style.filter = ''; return; }
+el.style.filter = 'url(#dsGlitchF)';
+if (!tick) return;
 var n = 10 + Math.floor(R() * 14), tv = [];
 for (var i = 0; i < n; i++) tv.push(R() < .03 + e * .16 ? (R() < .5 ? .5 - (.15 + R() * .35) : .5 + .15 + R() * .35).toFixed(2) : '.5');
 fx.fr.setAttribute('tableValues', tv.join(' '));
@@ -113,8 +145,29 @@ var c = (idle * 1.1 + g * (1 + R() * 1.4)).toFixed(2);
 fx.or.setAttribute('dx', c); fx.oc.setAttribute('dx', -c);
 fx.oj.setAttribute('dx', ((R() - .5) * g * 2).toFixed(1));
 fx.oj.setAttribute('dy', (R() < .06 ? (R() - .5) * g * 4 : 0).toFixed(1));
-el.style.filter = 'url(#dsGlitchF)';
 };
+this.ms = 0; this.px = -1; this.py = -1;
+this.onMove = function (e) {
+var host = self.el && self.el.parentNode;
+if (!host || e.pointerType === 'touch') return;
+var cur = host.querySelector('[data-ds-cur]'), x = e.clientX, y = e.clientY;
+if (!cur) return;
+var dx = self.px < 0 ? 0 : x - self.px, dy = self.py < 0 ? 0 : y - self.py, sp = Math.sqrt(dx * dx + dy * dy);
+self.px = x; self.py = y;
+cur.style.opacity = 1;
+cur.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+var t = e.target && e.target.closest ? e.target.closest('a,button,input,select,label,[role="tab"]') : null;
+if (t) cur.setAttribute('data-hov', ''); else cur.removeAttribute('data-hov');
+self.ms = Math.max(self.ms || 0, Math.min(1, sp / 35));
+};
+this.onLeave = function (e) {
+if (e.relatedTarget) return;
+var host = self.el && self.el.parentNode, cur = host && host.querySelector('[data-ds-cur]');
+if (cur) cur.style.opacity = 0;
+self.px = self.py = -1;
+};
+this.onDown = function () { var c = self.el && self.el.parentNode && self.el.parentNode.querySelector('[data-ds-cur]'); if (c) c.setAttribute('data-dn', ''); };
+this.onUp = function () { var c = self.el && self.el.parentNode && self.el.parentNode.querySelector('[data-ds-cur]'); if (c) c.removeAttribute('data-dn'); };
 this.scan = function () {
 var el = self.el;
 if (!el || !self.io) return;
@@ -151,6 +204,13 @@ el.addEventListener('scroll', self.onScroll, { passive: true });
 el.addEventListener('click', self.onClick);
 self.lastY = el.scrollTop;
 self.glRaf = requestAnimationFrame(self.glLoop);
+if (self.props.cursor !== false && typeof matchMedia !== 'undefined' && matchMedia('(pointer: fine)').matches && el.parentNode) {
+el.parentNode.setAttribute('data-ds-curon', '');
+document.addEventListener('pointermove', self.onMove, { passive: true });
+document.addEventListener('mouseout', self.onLeave);
+document.addEventListener('pointerdown', self.onDown);
+document.addEventListener('pointerup', self.onUp);
+}
 if (typeof IntersectionObserver !== 'undefined') {
 self.io = new IntersectionObserver(function (es) {
 es.forEach(function (en) {
@@ -169,6 +229,11 @@ el.removeEventListener('wheel', self.onWheel);
 el.removeEventListener('scroll', self.onScroll);
 el.removeEventListener('click', self.onClick);
 delete el.__dsScrollTo;
+document.removeEventListener('pointermove', self.onMove);
+document.removeEventListener('mouseout', self.onLeave);
+if (el.parentNode) el.parentNode.removeAttribute('data-ds-curon');
+document.removeEventListener('pointerdown', self.onDown);
+document.removeEventListener('pointerup', self.onUp);
 if (self.io) { self.io.disconnect(); self.io = null; }
 if (self.glRaf) cancelAnimationFrame(self.glRaf); self.glRaf = 0;
 el.style.filter = '';

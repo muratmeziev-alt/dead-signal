@@ -16,33 +16,76 @@ body{margin:0;background:#060404}
 .dsf-link{transition:color .2s}
 .dsf-link:hover{color:#ff4f57}
 .dsf-btn{transition:filter .2s}
-.dsf-btn:hover{filter:brightness(1.15)}
+
 @keyframes dsf-blink{0%,55%{opacity:1}56%,100%{opacity:.25}}
 .dsf-blink{animation:dsf-blink 1.4s steps(1) infinite}
 .dsf-q{transition:background .2s}
 .dsf-q:hover{background:rgb(229 48 58 / .05)}
-#ds-email::placeholder{color:#c98a8d}
-@media (max-width: 900px){.dsf-grid>*{grid-column:1 / -1 !important}.dsf-fan{display:none}}
+#ds-email::placeholder{color:rgb(236 232 225 / .45)}
+.dsf-in{transition:background-color .2s}.dsf-in:hover,.dsf-in:focus{background-color:rgb(236 232 225 / .1) !important}
+.ds-bf,.ds-bo,.ds-bt,.ds-bo2,.ds-bo2>span,.ds-bo2>span>span{transition:background-color .2s,color .2s,box-shadow .2s}
+.ds-bf:hover,.ds-bf:focus-visible{background-color:#c4252e !important;color:#120607 !important}
+.ds-bo:hover,.ds-bo:focus-visible{background-color:#e5303a !important;color:#120607 !important;box-shadow:inset 0 0 0 1px #e5303a !important;text-shadow:none !important}
+.ds-bt:not([aria-pressed="true"]):hover{background-color:rgb(229 48 58 / .22) !important;box-shadow:inset 0 0 0 1px #e5303a !important;color:#ffffff !important}
+.ds-bo2:hover,.ds-bo2:focus-visible{color:#120607 !important}.ds-bo2:hover>span:first-child,.ds-bo2:hover>span:first-child>span{background-color:#e5303a !important}
+@media (max-width:1099px){
+.dsf-head{height:84px !important;align-items:flex-end !important;padding:0 18px 16px !important}
+.dsf-rt{font-size:22px !important}
+.dsf-rs{right:18px !important}
+.dsf-road ul{padding:4px 18px 20px !important}
+.dsf-faq{padding-top:120px !important;padding-bottom:120px !important}
+.dsf-faq>*{grid-column:1 / -1 !important}
+.dsf-foot{padding-top:120px !important}
+.dsf-fg{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+.dsf-fg>:first-child{grid-column:1 / -1 !important}
+.dsf-fg>nav{grid-column:span 1 !important}
+}
+@media (max-width:699px){
+.dsf-road{grid-template-columns:minmax(0,1fr) !important;gap:16px !important}
+.dsf-road>*{grid-column:1 / -1 !important}
+.dsf-fan{display:none !important}
+.dsf-node{display:none}
+.dsf-road>*>span[aria-hidden="true"]:first-child{display:none}
+.dsf-head{height:68px !important;align-items:center !important;padding:0 18px !important}
+.dsf-rt{font-size:24px !important}
+.dsf-faq{padding-top:96px !important;padding-bottom:96px !important;gap:28px 24px !important}
+.dsf-q{padding:18px 0 !important;gap:14px !important}
+.dsf-q>span:first-child{gap:12px !important}
+.dsf-qt{font-size:22px !important}
+.dsf-a{padding:0 0 22px 30px !important}
+#wishlist{padding:0 12px !important}
+.ds-tick{display:none}
+.dsf-wo{clip-path:polygon(28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px) !important}
+.dsf-wi{clip-path:polygon(27.6px 0,100% 0,100% calc(100% - 27.6px),calc(100% - 27.6px) 100%,0 100%,0 27.6px) !important}
+.dsf-wc{padding:72px 20px 64px !important;gap:28px !important}
+.dsf-cta{flex-direction:column;align-items:stretch !important;align-self:stretch}
+.dsf-cta>a{justify-content:center;font-size:16px !important;padding:0 18px !important}
+.dsf-cta>a:first-child{font-size:16px !important}
+.dsf-form button{flex:1 1 100% !important}
+.dsf-foot{padding-top:96px !important}
+.dsf-fg{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:32px 16px !important}
+.dsf-fg>nav{grid-column:span 1 !important}
+}
 </style>
 </helmet>
 <div class="dsf" style="width: 100%; background: #060404; color: #ece8e1; font-family: 'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif; -webkit-font-smoothing: antialiased">
 
 <section id="roadmap" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 0 clamp(20px, 4vw, 56px); display: flex; flex-direction: column; align-items: center">
 <span style="display: inline-flex; flex-direction: column; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">ROADMAP</span><span style="color: rgb(236 232 225 / .55)">WHAT COMES ONLINE NEXT</span></span>
-<span aria-hidden="true" style="width: 10px; height: 10px; margin-top: 18px; background: #e5303a"></span>
+<span aria-hidden="true" class="dsf-node" style="width: 10px; height: 10px; margin-top: 18px; background: #e5303a"></span>
 <div class="dsf-fan" aria-hidden="true" style="position: relative; align-self: stretch; height: 110px">
 <svg viewBox="0 0 100 110" preserveAspectRatio="none" style="position: absolute; top: 0; bottom: 0; left: calc(16.667% - 8px); width: calc(33.333% + 8px); height: 100%; overflow: visible"><path d="M100 0 C 100 66, 0 44, 0 110" fill="none" stroke="#e5303a" stroke-width="1.5" vector-effect="non-scaling-stroke"></path></svg>
 <span style="position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; margin-left: -.5px; background: rgb(229 48 58 / .55)"></span>
 <svg viewBox="0 0 100 110" preserveAspectRatio="none" style="position: absolute; top: 0; bottom: 0; left: 50%; width: calc(33.333% + 8px); height: 100%; overflow: visible"><path d="M0 0 C 0 66, 100 44, 100 110" fill="none" stroke="rgb(229 48 58 / .35)" stroke-width="1" vector-effect="non-scaling-stroke"></path></svg>
 </div>
-<div class="dsf-grid" style="align-self: stretch; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; align-items: stretch">
+<div class="dsf-grid dsf-road" style="align-self: stretch; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; align-items: stretch">
 <sc-for list="{{road}}" as="r" hint-placeholder-count="3">
 <div style="grid-column: span 2; position: relative; padding: 1px; opacity: {{r.op}}; background: {{r.edge}}; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)">
 <span aria-hidden="true" style="position: absolute; left: 50%; top: 0; width: 10px; height: 10px; margin-left: -5px; background: {{r.node}}; z-index: 1"></span>
 <div style="height: 100%; display: flex; flex-direction: column; background: #080505; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 19.6px), calc(100% - 19.6px) 100%, 0 100%)">
-<div style="position: relative; display: flex; align-items: center; height: 76px; padding: 0 22px; background: {{r.headFill}}">
-<span style="font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 28px; letter-spacing: .08em; color: {{r.color}}">{{r.title}}</span>
-<span style="position: absolute; top: 12px; right: 22px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; color: {{r.sub}}">{{r.status}}</span>
+<div class="dsf-head" style="position: relative; display: flex; align-items: center; height: 76px; padding: 0 22px; background: {{r.headFill}}">
+<span class="dsf-rt" style="font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 28px; letter-spacing: .08em; color: {{r.color}}">{{r.title}}</span>
+<span class="dsf-rs" style="position: absolute; top: 12px; right: 22px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; color: {{r.sub}}">{{r.status}}</span>
 </div>
 <ul style="margin: 0; padding: 4px 22px 24px; list-style: none; display: flex; flex-direction: column">
 <sc-for list="{{r.items}}" as="it" hint-placeholder-count="3">
@@ -56,7 +99,7 @@ body{margin:0;background:#060404}
 <span style="margin-top: 28px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em; color: rgb(236 232 225 / .45)">PLANS CHANGE. THIS PAGE IS UPDATED AS THEY DO.</span>
 </section>
 
-<section id="faq" class="dsf-grid" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 180px clamp(20px, 4vw, 56px); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 40px 24px; align-items: start">
+<section id="faq" class="dsf-grid dsf-faq" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 180px clamp(20px, 4vw, 56px); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 40px 24px; align-items: start">
 <div style="grid-column: span 2; display: flex; flex-direction: column; gap: 20px">
 <span style="display: inline-flex; align-items: center; gap: 10px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .12em"><span style="padding: 3px 7px; background: #e5303a; color: #120607">FAQ</span><span style="color: rgb(236 232 225 / .55)">QUESTIONS</span></span>
 <p style="margin: 0; max-width: 320px; font-size: 16px; line-height: 1.6; color: rgb(236 232 225 / .66)">Can’t find what you need? <a href="https://x.com/DeadSignalHQ" class="dsf-link" style="text-decoration: none; box-shadow: inset 0 -1px 0 #e5303a">Ask us on X</a>.</p>
@@ -66,12 +109,12 @@ body{margin:0;background:#060404}
 <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgb(229 48 58 / .3)">
 <h3 style="margin: 0">
 <button type="button" class="dsf-q" aria-expanded="{{item.open}}" onClick="{{item.toggle}}" style="display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 20px; padding: 22px 0; background: none; border: 0; color: #ece8e1; text-align: left; cursor: pointer">
-<span style="display: flex; align-items: baseline; gap: 18px"><span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: .1em; color: #c98a8d">{{item.n}}</span><span style="font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: .01em">{{item.q}}</span></span>
+<span style="display: flex; align-items: baseline; gap: 18px"><span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: .1em; color: #c98a8d">{{item.n}}</span><span class="dsf-qt" style="font-family: 'Big Shoulders Display', 'Big Shoulders', Impact, sans-serif; font-weight: 800; font-size: 28px; line-height: 1.05; letter-spacing: .01em">{{item.q}}</span></span>
 <span aria-hidden="true" style="{{item.iconStyle}}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 14px; height: 14px; transition: transform .4s cubic-bezier(.16, 1, .3, 1); transform: {{item.rot}}"><path d="M8 2v12M2 8h12"></path></svg></span>
 </button>
 </h3>
 <sc-if value="{{item.open}}" hint-placeholder-val="{{ false }}">
-<p style="margin: 0; max-width: 640px; padding: 0 48px 26px 38px; font-size: 16px; line-height: 1.6; color: rgb(236 232 225 / .66); text-wrap: pretty">{{item.a}}</p>
+<p class="dsf-a" style="margin: 0; max-width: 640px; padding: 0 48px 26px 38px; font-size: 16px; line-height: 1.6; color: rgb(236 232 225 / .66); text-wrap: pretty">{{item.a}}</p>
 </sc-if>
 </div>
 </sc-for>
@@ -79,31 +122,31 @@ body{margin:0;background:#060404}
 </section>
 
 <section id="wishlist" aria-label="Wishlist" style="box-sizing: border-box; padding: 0 20px; background-color: #060404; background-image: repeating-linear-gradient(135deg, rgb(229 48 58 / .07) 0 2px, transparent 2px 11px)">
-<div style="position: relative; padding: 1px; box-sizing: border-box; background: rgb(229 48 58 / .6); clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
-<div style="position: relative; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); color: #ff4f57; font-family: 'Share Tech Mono', ui-monospace, monospace; text-shadow: -0.36px 0 rgb(255 40 60 / .45), 0.36px 0 rgb(90 200 255 / .3), 0 0 3px rgb(255 79 87 / .165)">
+<div class="dsf-wo" style="position: relative; padding: 1px; box-sizing: border-box; background: rgb(229 48 58 / .6); clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
+<div class="dsf-wi" style="position: relative; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); color: #ff4f57; font-family: 'Share Tech Mono', ui-monospace, monospace; text-shadow: -0.36px 0 rgb(255 40 60 / .45), 0.36px 0 rgb(90 200 255 / .3), 0 0 3px rgb(255 79 87 / .165)">
 <img src="assets/f32fe80f2095e937a1308f3901b796c6.jpg" alt="" style="position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); object-fit: cover; object-position: 70% 40%; filter: grayscale(1) contrast(1.2) brightness(.37) blur(2px)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: #491014; mix-blend-mode: multiply"></div>
 <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(120% 95% at 50% 40%, rgb(12 4 5 / .15) 0%, rgb(12 4 5 / .55) 60%, rgb(6 2 3 / .9) 100%)"></div>
 <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(65% 55% at 50% 40%, rgb(255 80 88 / .13) 0%, rgb(0 0 0 / 0) 70%); mix-blend-mode: screen"></div>
 <div aria-hidden="true" style="position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgb(0 0 0 / .228) 0 1px, transparent 1px 3px)"></div>
 <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 140px rgb(0 0 0 / .75), inset 0 0 18px rgb(255 79 87 / .18)"></div>
-<span aria-hidden="true" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
-<span aria-hidden="true" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
+<span aria-hidden="true" class="ds-tick" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
+<span aria-hidden="true" class="ds-tick" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: #e5303a"></span>
 
-<div style="position: relative; box-sizing: border-box; padding: 120px 24px 104px; display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center">
+<div class="dsf-wc" style="position: relative; box-sizing: border-box; padding: 120px 24px 104px; display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center">
 <span style="font-size: 14px; letter-spacing: .1em; color: #c98a8d">COMING TO PC · STEAM</span>
 <h2 style="margin: 0; font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: clamp(44px, 6vw, 88px); line-height: .95; letter-spacing: .04em; color: #ff4f57; text-shadow: -0.6px 0 rgb(255 40 60 / .45), 0.6px 0 rgb(90 200 255 / .3), 0 0 6px rgb(229 48 58 / .2)">WISHLISTS OPEN SOON</h2>
 <p style="margin: 0; max-width: 560px; font-size: 16px; line-height: 1.5; letter-spacing: .04em; color: #ffb3b6">The Steam page is on the way. Follow @DeadSignalHQ or leave an email to hear the moment it goes live.</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; text-shadow: none">
-<a href="#wishlist" class="dsf-btn" style="display: inline-flex; align-items: center; gap: 16px; height: 56px; padding: 0 26px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 19px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; box-shadow: 0 0 28px rgb(229 48 58 / .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px; letter-spacing: .1em">SOON</span><svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 8px; height: 10px"><path d="M0 0l8 5-8 5z"></path></svg></a>
-<a href="https://x.com/DeadSignalHQ" class="dsf-btn" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .6); font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: .12em; text-decoration: none; white-space: nowrap; color: #ffffff">FOLLOW @DEADSIGNALHQ<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" style="width: 12px; height: 12px"><path d="M4 12L12 4M6 4h6v6"></path></svg></a>
+<div class="dsf-cta" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; text-shadow: none">
+<a href="#wishlist" class="dsf-btn ds-bf" style="display: inline-flex; align-items: center; gap: 16px; height: 56px; padding: 0 26px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 19px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; box-shadow: 0 0 28px rgb(229 48 58 / .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px; letter-spacing: .1em">SOON</span><svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 8px; height: 10px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+<a href="https://x.com/DeadSignalHQ" class="dsf-btn ds-bo" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .6); font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 14px; letter-spacing: .12em; text-decoration: none; white-space: nowrap; color: #ffffff">FOLLOW @DEADSIGNALHQ<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" style="width: 12px; height: 12px"><path d="M4 12L12 4M6 4h6v6"></path></svg></a>
 </div>
-<form style="width: min(100%, 560px); margin-top: 12px">
+<form class="dsf-form" style="width: min(100%, 560px); margin-top: 12px">
 <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 28px; border-top: 1px solid rgb(229 48 58 / .4)">
 <label for="ds-email" style="text-align: left; font-size: 13px; letter-spacing: .12em; color: #c98a8d">GET BETA NEWS BY EMAIL</label>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
-<input id="ds-email" type="email" name="email" placeholder="YOU@EXAMPLE.COM" style="height: 48px; min-width: 0; flex: 1 1 240px; box-sizing: border-box; border: 0; border-radius: 0; background: rgb(12 4 5 / .7); padding: 0 16px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 16px; letter-spacing: .06em; color: #ffb3b6; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .6); outline: none">
-<button type="button" class="dsf-btn" style="flex: none; height: 48px; padding: 0 24px; border: 0; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 16px; letter-spacing: .1em; cursor: pointer; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">SIGN UP</button>
+<input id="ds-email" type="email" name="email" placeholder="YOU@EXAMPLE.COM" class="dsf-in" style="height: 48px; min-width: 0; flex: 1 1 240px; box-sizing: border-box; border: 0; border-radius: 0; background: rgb(236 232 225 / .06); padding: 0 16px; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 16px; letter-spacing: .06em; color: #ece8e1; text-shadow: none; box-shadow: inset 0 -2px 0 #e5303a; outline: none">
+<button type="button" class="dsf-btn ds-bf" style="flex: none; height: 48px; padding: 0 24px; border: 0; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 16px; letter-spacing: .1em; cursor: pointer; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">SIGN UP</button>
 </div>
 </div>
 </form>
@@ -112,8 +155,8 @@ body{margin:0;background:#060404}
 </div>
 </section>
 
-<footer style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 180px clamp(20px, 4vw, 56px) 32px; display: flex; flex-direction: column; gap: 56px">
-<div class="dsf-grid" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 40px 24px">
+<footer class="dsf-foot" style="max-width: 1440px; margin: 0 auto; box-sizing: border-box; padding: 180px clamp(20px, 4vw, 56px) 32px; display: flex; flex-direction: column; gap: 56px">
+<div class="dsf-grid dsf-fg" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 40px 24px">
 <div style="grid-column: span 2; display: flex; flex-direction: column; align-items: flex-start; gap: 20px">
 <svg viewBox="0 0 878 186" role="img" aria-label="DEAD SIGNAL" style="display: block; width: 180px; height: auto"><g fill="#e5303a"><rect x="0" y="0" width="20" height="120"></rect><polygon points="24.4,0 60,0 80,20 80,100 60,120 24.4,120 24.4,100 52,100 60,92 60,28 52,20 24.4,20"></polygon><rect x="94" y="0" width="20" height="120"></rect><rect x="118.4" y="0" width="47.6" height="20"></rect><rect x="118.4" y="51" width="38" height="18"></rect><rect x="118.4" y="100" width="47.6" height="20"></rect><rect x="204.4" y="60" width="31.2" height="18"></rect><polygon points="180,120 180,20 200,0 240,0 260,20 260,120 240,120 240,28 232,20 208,20 200,28 200,120"></polygon><rect x="274" y="0" width="20" height="120"></rect><polygon points="298.4,0 334,0 354,20 354,100 334,120 298.4,120 298.4,100 326,100 334,92 334,28 326,20 298.4,20"></polygon><polygon points="420,0 480,0 480,20 428,20 420,28 420,51 460,51 480,71 480,100 460,120 400,120 400,100 452,100 460,92 460,77 452,69 420,69 400,49 400,20"></polygon><rect x="494" y="0" width="20" height="55.6"></rect><rect x="494" y="60" width="20" height="60"></rect><polygon points="548,0 608,0 608,20 556,20 548,28 548,92 556,100 588,100 588,72 568,72 568,54 608,54 608,100 588,120 548,120 528,100 528,20"></polygon><rect x="622" y="0" width="20" height="120"></rect><rect x="682" y="0" width="20" height="120"></rect><polygon points="646.4,0 663,0 677.6,120 661,120"></polygon><rect x="740.4" y="60" width="31.2" height="18"></rect><polygon points="716,120 716,20 736,0 776,0 796,20 796,120 776,120 776,28 768,20 744,20 736,28 736,120"></polygon><rect x="810" y="0" width="20" height="95.6"></rect><rect x="810" y="100" width="68" height="20"></rect></g><polyline points="0,164 561.48,164 571.48,140 583.48,184 593.48,150 601.48,164 878,164" fill="none" stroke="#ff8a8f" stroke-width="6" stroke-linecap="square"></polyline></svg>
 <p style="margin: 0; max-width: 320px; font-size: 16px; line-height: 1.6; color: rgb(236 232 225 / .66)">A top-down zombie extraction shooter from KAZI Studio Games.</p>

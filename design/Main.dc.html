@@ -24,14 +24,49 @@ a{color:inherit}a:hover{color:#ffffff}
 .ds-type{animation:ds-type 1s steps(30,end) 1s both}
 .ds-bar{animation:ds-bar .25s ease-out both}
 @media (prefers-reduced-motion: reduce){.ds-crt,.ds-on1,.ds-on2,.ds-on3,.ds-type,.ds-bar{animation:none !important}}
+.ds-bf,.ds-bo,.ds-bt,.ds-bo2,.ds-bo2>span,.ds-bo2>span>span{transition:background-color .2s,color .2s,box-shadow .2s}
+.ds-bf:hover,.ds-bf:focus-visible{background-color:#c4252e !important;color:#120607 !important}
+.ds-bo:hover,.ds-bo:focus-visible{background-color:#e5303a !important;color:#120607 !important;box-shadow:inset 0 0 0 1px #e5303a !important;text-shadow:none !important}
+.ds-bt:not([aria-pressed="true"]):hover{background-color:rgb(229 48 58 / .22) !important;box-shadow:inset 0 0 0 1px #e5303a !important;color:#ffffff !important}
+.ds-bo2:hover,.ds-bo2:focus-visible{color:#120607 !important}.ds-bo2:hover>span:first-child,.ds-bo2:hover>span:first-child>span{background-color:#e5303a !important}
+.ds-burger{display:none}
+.ds-menu a{transition:color .2s,background-color .2s}
+.ds-menu a:hover{color:#ffffff}
+@media (max-width:1099px){
+.ds-nav{display:none !important}
+.ds-burger{display:inline-flex !important}
+.ds-hr{flex:1 1 auto;justify-content:flex-end}
+.ds-hr>span:first-child{margin-right:auto}
+.ds-logo{height:auto !important;aspect-ratio:878/186}
+.ds-fo{min-height:min(calc(100svh - 20px), 1174px) !important}
+.ds-fi{min-height:min(calc(100svh - 22px), 1172px) !important}
+.ds-hero-mid{padding-top:72px !important}
+}
+@media (max-width:699px){
+#top{padding:12px 12px 0 !important}
+.ds-tick{display:none}
+.ds-fo{min-height:min(calc(100svh - 12px), 832px) !important;clip-path:polygon(28px 0,100% 0,100% calc(100% - 28px),calc(100% - 28px) 100%,0 100%,0 28px) !important}
+.ds-fi{min-height:min(calc(100svh - 14px), 830px) !important;clip-path:polygon(27.6px 0,100% 0,100% calc(100% - 27.6px),calc(100% - 27.6px) 100%,0 100%,0 27.6px) !important}
+.ds-hdr{padding-top:24px !important}
+.ds-hwish{display:none !important}
+.ds-hero-mid{padding-top:24px !important;justify-content:center !important}
+.ds-cta{flex-direction:column;align-items:stretch !important;align-self:stretch;box-sizing:border-box;padding:0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px));margin-bottom:24px !important;gap:12px !important}
+.ds-cta>span:first-child{display:none}
+.ds-cta>a{justify-content:center;font-size:16px !important;padding:0 18px !important}
+.ds-band-in{padding:20px 16px !important;gap:20px !important}
+.ds-stats{grid-template-columns:repeat(2,minmax(0,1fr)) !important;font-size:13px !important}
+.ds-give{height:auto !important;margin:0 !important;line-height:1.4 !important}
+.ds-ftr{padding-bottom:24px !important;padding-top:20px !important}
+.ds-ftr>span:first-child,.ds-ftr>div>div[aria-hidden="true"]{display:none !important}
+}
 </style>
 </helmet>
 <div id="top" style="position: relative; width: 100%; scroll-snap-align: start; box-sizing: border-box; padding: 20px 20px 0; background-color: {{fx.bezel}}; background-image: linear-gradient(180deg, transparent calc(100% - 240px), {{fx.bezel}} calc(100% - 10px)), repeating-linear-gradient(135deg, {{c.stripe}} 0 2px, transparent 2px 11px); color: {{c.ink}}; font-family: 'Share Tech Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased">
 
 <div aria-hidden="true" style="position: absolute; inset: 44px; background: {{fx.halo}}; filter: blur(64px); opacity: {{fx.haloOpacity}}; pointer-events: none"></div>
 
-<div class="ds-crt" style="position: relative; min-height: 860px; padding: 1px; box-sizing: border-box; background: {{fx.frame}}; clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
-<div style="position: relative; min-height: 858px; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); display: flex; flex-direction: column; text-shadow: {{fx.textShadow}}">
+<div class="ds-crt ds-fo" style="position: relative; min-height: 860px; padding: 1px; box-sizing: border-box; background: {{fx.frame}}; clip-path: polygon(44px 0, 100% 0, 100% calc(100% - 44px), calc(100% - 44px) 100%, 0 100%, 0 44px)">
+<div class="ds-fi" style="position: relative; min-height: 858px; overflow: hidden; background: #0c0405; clip-path: polygon(43.6px 0, 100% 0, 100% calc(100% - 43.6px), calc(100% - 43.6px) 100%, 0 100%, 0 43.6px); display: flex; flex-direction: column; text-shadow: {{fx.textShadow}}">
 
 <img src="assets/f32fe80f2095e937a1308f3901b796c6.jpg" alt="" style="position: absolute; inset: -12px; width: calc(100% + 24px); height: calc(100% + 24px); object-fit: cover; object-position: 70% 40%; filter: grayscale(1) contrast(1.2) brightness({{fx.bright}}) blur(2px)">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: {{fx.tint}}; mix-blend-mode: multiply"></div>
@@ -42,11 +77,11 @@ a{color:inherit}a:hover{color:#ffffff}
 <svg aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: .08; mix-blend-mode: screen; pointer-events: none"><filter id="ds-grain"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"></feTurbulence></filter><rect width="100%" height="100%" filter="url(#ds-grain)"></rect></svg>
 <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 140px rgb(0 0 0 / .75), inset 0 0 18px {{fx.edge}}"></div>
 
-<span aria-hidden="true" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
-<span aria-hidden="true" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
+<span aria-hidden="true" class="ds-tick" style="position: absolute; top: 50%; left: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
+<span aria-hidden="true" class="ds-tick" style="position: absolute; top: 50%; right: 0; width: 10px; height: 64px; transform: translateY(-50%); background: {{c.tick}}"></span>
 
-<header style="position: relative; z-index: 2; box-sizing: border-box; padding: 34px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
-<nav aria-label="Main" class="ds-type" style="display: flex; flex-wrap: wrap; gap: 0 26px; font-size: 13px; letter-spacing: .1em">
+<header class="ds-hdr" style="position: relative; z-index: 2; box-sizing: border-box; padding: 34px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
+<nav aria-label="Main" class="ds-type ds-nav" style="display: flex; flex-wrap: wrap; gap: 0 26px; font-size: 13px; letter-spacing: .1em">
 <a href="#game" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">01</span>GAME</a>
 <a href="#world" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">02</span>WORLD</a>
 <a href="#media" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">03</span>MEDIA</a>
@@ -54,30 +89,31 @@ a{color:inherit}a:hover{color:#ffffff}
 <a href="#roadmap" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">05</span>ROADMAP</a>
 <a href="#faq" style="display: inline-flex; gap: 8px; padding: 14px 0; text-decoration: none"><span style="color: {{t.dim}}">06</span>FAQ</a>
 </nav>
-<div style="display: flex; align-items: center; gap: 18px">
+<div class="ds-hr" style="display: flex; align-items: center; gap: 12px 18px">
 <span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .12em; color: {{t.dim}}; white-space: nowrap"><span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a; box-shadow: 0 0 8px rgb(229 48 58 / .8)"></span>LIVE · WARD B</span>
-<a href="#wishlist" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">WISHLIST<svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 7px; height: 9px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+<a href="#wishlist" class="ds-bf ds-hwish" style="display: inline-flex; align-items: center; gap: 12px; height: 44px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)">WISHLIST<svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 7px; height: 9px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+<button type="button" class="ds-burger ds-bo" aria-label="Open menu" aria-expanded="{{menuOpen}}" onClick="{{openMenu}}" style="align-items: center; gap: 10px; height: 44px; padding: 0 14px; border: 0; background: transparent; box-shadow: inset 0 0 0 1px {{t.frame}}; color: #ffffff; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: .12em; cursor: pointer">MENU<svg viewBox="0 0 16 12" aria-hidden="true" fill="currentColor" style="width: 16px; height: 12px"><rect width="16" height="1.6"></rect><rect y="5.2" width="16" height="1.6"></rect><rect y="10.4" width="10" height="1.6"></rect></svg></button>
 </div>
 </header>
 
-<div style="position: relative; z-index: 1; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 0 0; padding-top: 62px">
+<div class="ds-hero-mid" style="position: relative; z-index: 1; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 48px 0 0; padding-top: 62px">
 
 <div class="ds-on1" style="align-self: stretch; box-sizing: border-box; padding: 0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px))">
 <h1 style="margin: 0; filter: {{fx.logoFilter}}">
-<svg viewBox="0 0 878 186" role="img" aria-label="DEAD SIGNAL" style="display: block; width: 100%; height: 209px"><g fill="{{t.logo}}"><rect x="0" y="0" width="20" height="120"></rect><polygon points="24.4,0 60,0 80,20 80,100 60,120 24.4,120 24.4,100 52,100 60,92 60,28 52,20 24.4,20"></polygon><rect x="94" y="0" width="20" height="120"></rect><rect x="118.4" y="0" width="47.6" height="20"></rect><rect x="118.4" y="51" width="38" height="18"></rect><rect x="118.4" y="100" width="47.6" height="20"></rect><rect x="204.4" y="60" width="31.2" height="18"></rect><polygon points="180,120 180,20 200,0 240,0 260,20 260,120 240,120 240,28 232,20 208,20 200,28 200,120"></polygon><rect x="274" y="0" width="20" height="120"></rect><polygon points="298.4,0 334,0 354,20 354,100 334,120 298.4,120 298.4,100 326,100 334,92 334,28 326,20 298.4,20"></polygon><polygon points="420,0 480,0 480,20 428,20 420,28 420,51 460,51 480,71 480,100 460,120 400,120 400,100 452,100 460,92 460,77 452,69 420,69 400,49 400,20"></polygon><rect x="494" y="0" width="20" height="55.6"></rect><rect x="494" y="60" width="20" height="60"></rect><polygon points="548,0 608,0 608,20 556,20 548,28 548,92 556,100 588,100 588,72 568,72 568,54 608,54 608,100 588,120 548,120 528,100 528,20"></polygon><rect x="622" y="0" width="20" height="120"></rect><rect x="682" y="0" width="20" height="120"></rect><polygon points="646.4,0 663,0 677.6,120 661,120"></polygon><rect x="740.4" y="60" width="31.2" height="18"></rect><polygon points="716,120 716,20 736,0 776,0 796,20 796,120 776,120 776,28 768,20 744,20 736,28 736,120"></polygon><rect x="810" y="0" width="20" height="95.6"></rect><rect x="810" y="100" width="68" height="20"></rect></g><polyline points="0,164 561.48,164 571.48,140 583.48,184 593.48,150 601.48,164 878,164" fill="none" stroke="{{t.pulse}}" stroke-width="6" stroke-linecap="square"></polyline></svg>
+<svg viewBox="0 0 878 186" role="img" aria-label="DEAD SIGNAL" class="ds-logo" style="display: block; width: 100%; height: 209px"><g fill="{{t.logo}}"><rect x="0" y="0" width="20" height="120"></rect><polygon points="24.4,0 60,0 80,20 80,100 60,120 24.4,120 24.4,100 52,100 60,92 60,28 52,20 24.4,20"></polygon><rect x="94" y="0" width="20" height="120"></rect><rect x="118.4" y="0" width="47.6" height="20"></rect><rect x="118.4" y="51" width="38" height="18"></rect><rect x="118.4" y="100" width="47.6" height="20"></rect><rect x="204.4" y="60" width="31.2" height="18"></rect><polygon points="180,120 180,20 200,0 240,0 260,20 260,120 240,120 240,28 232,20 208,20 200,28 200,120"></polygon><rect x="274" y="0" width="20" height="120"></rect><polygon points="298.4,0 334,0 354,20 354,100 334,120 298.4,120 298.4,100 326,100 334,92 334,28 326,20 298.4,20"></polygon><polygon points="420,0 480,0 480,20 428,20 420,28 420,51 460,51 480,71 480,100 460,120 400,120 400,100 452,100 460,92 460,77 452,69 420,69 400,49 400,20"></polygon><rect x="494" y="0" width="20" height="55.6"></rect><rect x="494" y="60" width="20" height="60"></rect><polygon points="548,0 608,0 608,20 556,20 548,28 548,92 556,100 588,100 588,72 568,72 568,54 608,54 608,100 588,120 548,120 528,100 528,20"></polygon><rect x="622" y="0" width="20" height="120"></rect><rect x="682" y="0" width="20" height="120"></rect><polygon points="646.4,0 663,0 677.6,120 661,120"></polygon><rect x="740.4" y="60" width="31.2" height="18"></rect><polygon points="716,120 716,20 736,0 776,0 796,20 796,120 776,120 776,28 768,20 744,20 736,28 736,120"></polygon><rect x="810" y="0" width="20" height="95.6"></rect><rect x="810" y="100" width="68" height="20"></rect></g><polyline points="0,164 561.48,164 571.48,140 583.48,184 593.48,150 601.48,164 878,164" fill="none" stroke="{{t.pulse}}" stroke-width="6" stroke-linecap="square"></polyline></svg>
 </h1>
 </div>
 
-<div class="ds-on2" style="margin-top: 28px; margin-bottom: 45px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
+<div class="ds-on2 ds-cta" style="margin-top: 28px; margin-bottom: 45px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 24px; color: {{t.ink}}; text-shadow: {{fx.textShadowTop}}">
 <span aria-hidden="true" style="width: 44px; height: 44px; background-image: repeating-linear-gradient(135deg, {{t.hatchStrong}} 0 4px, transparent 4px 10px)"></span>
-<a href="#wishlist" style="display: inline-flex; align-items: center; gap: 16px; height: 56px; padding: 0 26px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 19px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; box-shadow: 0 0 28px rgb(229 48 58 / .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px; letter-spacing: .1em">SOON</span><svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 8px; height: 10px"><path d="M0 0l8 5-8 5z"></path></svg></a>
-<a href="#game" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; box-shadow: inset 0 0 0 1px {{t.frame}}; font-size: 14px; letter-spacing: .12em; text-decoration: none; white-space: nowrap; color: #ffffff">EXPLORE THE GAME<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 13px; height: 13px"><path d="M8 2v11M4 9l4 4 4-4"></path></svg></a>
+<a href="#wishlist" class="ds-bf" style="display: inline-flex; align-items: center; gap: 16px; height: 56px; padding: 0 26px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 19px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; text-shadow: none; box-shadow: 0 0 28px rgb(229 48 58 / .45); clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px; letter-spacing: .1em">SOON</span><svg viewBox="0 0 8 10" aria-hidden="true" fill="currentColor" style="width: 8px; height: 10px"><path d="M0 0l8 5-8 5z"></path></svg></a>
+<a href="#game" class="ds-bo" style="display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 20px; box-shadow: inset 0 0 0 1px {{t.frame}}; font-size: 14px; letter-spacing: .12em; text-decoration: none; white-space: nowrap; color: #ffffff">EXPLORE THE GAME<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 13px; height: 13px"><path d="M8 2v11M4 9l4 4 4-4"></path></svg></a>
 </div>
 
 <div class="ds-on3" style="position: relative; align-self: stretch; margin-top: 40px; border-top: 1px solid {{c.line}}; border-bottom: 1px solid {{c.line}}; background-color: {{c.band}}; background-image: repeating-linear-gradient(45deg, {{c.hatch}} 0 1px, transparent 1px 6px)">
-<div style="box-sizing: border-box; padding: 24px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)); display: flex; flex-direction: column; gap: 32px">
+<div class="ds-band-in" style="box-sizing: border-box; padding: 24px max(16px, calc(clamp(20px, 4vw, 56px) - 21px)); display: flex; flex-direction: column; gap: 32px">
 <div style="display: flex; flex-direction: column; gap: 12px"><span style="font-size: 14px; letter-spacing: .1em; color: {{c.dim}}">GAME PROFILE:</span><h2 style="margin: 0; font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.05; letter-spacing: .04em; color: {{c.ink}}; text-shadow: {{fx.headShadow}}">TOP-DOWN ZOMBIE EXTRACTION SHOOTER<br>FOR PC · COMING SOON TO STEAM</h2></div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px 24px; padding-top: 8px; font-size: 14px; letter-spacing: .08em; line-height: 1.45; color: {{c.soft}}">
+<div class="ds-stats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 10px 24px; padding-top: 8px; font-size: 14px; letter-spacing: .08em; line-height: 1.45; color: {{c.soft}}">
 <span>RAIDS: 25–45 MIN<br>ZONES: 06</span>
 <span>INFECTED: 05 TYPES<br>BUNKER: 12 ROOMS</span>
 <span>DEVELOPED BY<br>KAZI STUDIO GAMES</span>
@@ -86,22 +122,48 @@ a{color:inherit}a:hover{color:#ffffff}
 </div>
 </div>
 
-<footer style="position: relative; z-index: 2; box-sizing: border-box; padding: 0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 30px; display: flex; flex-direction: column; gap: 8px">
+<footer class="ds-ftr" style="position: relative; z-index: 2; box-sizing: border-box; padding: 0 max(16px, calc(clamp(20px, 4vw, 56px) - 21px)) 30px; display: flex; flex-direction: column; gap: 8px">
 <span aria-hidden="true" style="font-size: 11px; letter-spacing: .14em; color: {{c.dim}}">SIGNAL</span>
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px">
 <div aria-hidden="true" style="display: flex; gap: 3px">
 <span class="ds-bar" style="animation-delay: 1.45s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.54s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.63s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.72s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.81s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.90s; width: 22px; height: 8px; background: {{c.bar}}"></span><span class="ds-bar" style="animation-delay: 1.99s; width: 22px; height: 8px; background: {{c.barOff}}"></span><span class="ds-bar" style="animation-delay: 2.08s; width: 22px; height: 8px; background: {{c.barOff}}"></span><span class="ds-bar" style="animation-delay: 2.17s; width: 22px; height: 8px; background: {{c.barOff}}"></span>
 </div>
-<a href="https://x.com/DeadSignalHQ" style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; height: 44px; margin: -18px 0; font-size: 13px; line-height: 1; letter-spacing: .1em; text-decoration: none; color: {{c.soft}}"><span style="color: {{c.ink}}">▲ GIVEAWAY</span><span>$5 STEAM GIFT CARDS · 3 WINNERS</span><span style="color: {{c.ink}}">ENTER ON X ↗</span></a>
+<a href="https://x.com/DeadSignalHQ" class="ds-give" style="display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; height: 44px; margin: -18px 0; font-size: 13px; line-height: 1; letter-spacing: .1em; text-decoration: none; color: {{c.soft}}"><span style="color: {{c.ink}}">▲ GIVEAWAY</span><span>$5 STEAM GIFT CARDS · 3 WINNERS</span><span style="color: {{c.ink}}">ENTER ON X ↗</span></a>
 </div>
 </footer>
 
 </div>
 </div>
+
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-label="Menu" class="ds-menu" style="position: fixed; inset: 0; z-index: 70; box-sizing: border-box; padding: 12px; background: rgb(6 4 4 / .96); display: flex; color: #ff4f57; font-family: 'Share Tech Mono', ui-monospace, monospace">
+<div style="position: relative; flex: 1 1 auto; padding: 1px; box-sizing: border-box; background: rgb(229 48 58 / .6); clip-path: polygon(28px 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%, 0 28px)">
+<div style="position: relative; height: 100%; box-sizing: border-box; padding: 24px 20px 28px; background-color: #0c0405; background-image: repeating-linear-gradient(0deg, rgb(0 0 0 / .2) 0 1px, transparent 1px 3px); clip-path: polygon(27.6px 0, 100% 0, 100% calc(100% - 27.6px), calc(100% - 27.6px) 100%, 0 100%, 0 27.6px); display: flex; flex-direction: column; gap: 32px; overflow-y: auto">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-left: 12px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: .12em; color: #c98a8d"><span aria-hidden="true" style="width: 6px; height: 6px; background: #e5303a"></span>LIVE · WARD B</span>
+<button type="button" class="ds-bo" aria-label="Close menu" onClick="{{closeMenu}}" style="display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 14px; border: 0; background: transparent; box-shadow: inset 0 0 0 1px rgb(229 48 58 / .6); color: #ffffff; font-family: 'Share Tech Mono', ui-monospace, monospace; font-size: 13px; letter-spacing: .12em; cursor: pointer">CLOSE<svg viewBox="0 0 12 12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" style="width: 11px; height: 11px"><path d="M1 1l10 10M11 1L1 11"></path></svg></button>
+</div>
+<nav aria-label="Menu" style="display: flex; flex-direction: column; border-top: 1px solid rgb(229 48 58 / .3)">
+<sc-for list="{{menu}}" as="m" hint-placeholder-count="6">
+<a href="{{m.href}}" onClick="{{closeMenu}}" style="display: flex; align-items: baseline; gap: 16px; padding: 18px 12px; border-bottom: 1px solid rgb(229 48 58 / .3); color: #ff4f57; text-decoration: none"><span style="font-size: 13px; letter-spacing: .1em; color: #c98a8d">{{m.n}}</span><span style="font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: .08em">{{m.t}}</span></a>
+</sc-for>
+</nav>
+<a href="#wishlist" class="ds-bf" onClick="{{closeMenu}}" style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 14px; height: 56px; padding: 0 18px; background: #e5303a; color: #120607; font-family: 'Chakra Petch', ui-monospace, monospace; font-weight: 700; font-size: 16px; letter-spacing: .1em; text-decoration: none; white-space: nowrap; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%)">WISHLIST ON STEAM<span style="font-family: 'Share Tech Mono', ui-monospace, monospace; font-weight: 400; font-size: 12px">SOON</span></a>
+</div>
+</div>
+</div>
+</sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;palette&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;split&quot;,&quot;mono&quot;,&quot;signal&quot;,&quot;alarm&quot;],&quot;default&quot;:&quot;alarm&quot;,&quot;section&quot;:&quot;Color&quot;},&quot;bgColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#e5303a&quot;,&quot;#9e2229&quot;,&quot;#8c9194&quot;,&quot;#4a4f53&quot;],&quot;default&quot;:&quot;#491014&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;bgBrightness&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.1,&quot;max&quot;:1,&quot;step&quot;:0.01,&quot;default&quot;:0.37,&quot;section&quot;:&quot;Background&quot;},&quot;bezel&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#030202&quot;,&quot;#060404&quot;,&quot;#0a0b0c&quot;,&quot;#120607&quot;],&quot;default&quot;:&quot;#060404&quot;,&quot;section&quot;:&quot;Background&quot;},&quot;bgHaze&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:1.5,&quot;step&quot;:0.05,&quot;default&quot;:0.85,&quot;section&quot;:&quot;Background&quot;},&quot;light&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.65,&quot;section&quot;:&quot;Light&quot;},&quot;halo&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.5,&quot;section&quot;:&quot;Light&quot;},&quot;bloom&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.3,&quot;section&quot;:&quot;Light&quot;},&quot;aberration&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:3,&quot;step&quot;:0.1,&quot;default&quot;:0.6,&quot;section&quot;:&quot;Light&quot;},&quot;scanlines&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0,&quot;max&quot;:2,&quot;step&quot;:0.05,&quot;default&quot;:0.95,&quot;section&quot;:&quot;Light&quot;},&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1000}}">
 class Component extends DCLogic {
+constructor(props) {
+super(props);
+var self = this;
+this.state = { menu: false };
+this.openMenu = function () { self.setState({ menu: true }); };
+this.closeMenu = function () { self.setState({ menu: false }); };
+}
 renderVals() {
 var MONO = { ink: '#ece8e1', soft: 'rgb(236 232 225 / .82)', dim: 'rgb(236 232 225 / .6)', logo: '#ece8e1', pulse: '#e5303a', glowRGB: [236, 232, 225, .3], textRGB: [236, 232, 225, .35], coreRGB: [236, 232, 225, .13], lift: 'rgb(40 44 46 / .35)', halo: 'rgb(200 206 210 / .4)', edge: 'rgb(236 232 225 / .12)', frame: 'rgb(236 232 225 / .26)', line: 'rgb(236 232 225 / .2)', band: 'rgb(8 9 10 / .55)', hatch: 'rgb(236 232 225 / .035)', hatchStrong: 'rgb(236 232 225 / .45)', tick: 'rgb(236 232 225 / .5)', stripe: 'rgb(236 232 225 / .04)', tint: '#8c9194', bar: '#ece8e1', barOff: 'rgb(236 232 225 / .2)' };
 var SIGNAL = Object.assign({}, MONO, { coreRGB: [255, 214, 210, .14], lift: 'rgb(60 24 26 / .35)', halo: 'rgb(214 86 90 / .5)', band: 'rgb(12 4 5 / .55)', tint: '#b8323a' });
@@ -152,7 +214,8 @@ if (left > 0) {
 var d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60;
 label = d > 0 ? 'T−' + d + 'D ' + pad(h) + 'H' : 'T−' + pad(h) + 'H ' + pad(m) + 'M';
 }
-return { countdown: label, c: c, t: t, fx: fx };
+var MENU = [['01', 'GAME', '#game'], ['02', 'WORLD', '#world'], ['03', 'MEDIA', '#media'], ['04', 'NEWS', '#news'], ['05', 'ROADMAP', '#roadmap'], ['06', 'FAQ', '#faq']].map(function (m) { return { n: m[0], t: m[1], href: m[2] }; });
+return { countdown: label, c: c, t: t, fx: fx, menuOpen: !!this.state.menu, openMenu: this.openMenu, closeMenu: this.closeMenu, menu: MENU };
 }
 }
 </script>

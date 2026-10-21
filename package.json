@@ -1,0 +1,7 @@
+{
+  "name": "dead-signal-design",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve@14.2.4 design -l 3000"
+  }
+}

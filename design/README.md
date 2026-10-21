@@ -6,7 +6,8 @@ Export of the **DEAD SIGNAL HQ** canvas from Claude Design.
 
 - `canvas.json` — canvas index: the list of artboards, their positions and order.
 - `*.dc.html` — artboards (Design Component pages), one per section:
-  - `Play.dc.html` — full page (interactive)
+  - `Play.dc.html` — full page (interactive); `Play-Tablet.dc.html` (834) and `Play-Mobile.dc.html` (390) show it at tablet and phone width
+  - `Tablet.dc.html`, `Tablet-2.dc.html`, `Mobile.dc.html`, `Mobile-2.dc.html` — all sections at tablet and phone width
   - `Page.dc.html`, `Page-2.dc.html` — full page built from all sections
   - `Main.dc.html` — 01 · Header + Hero
   - `Game.dc.html` — 02 · The Game: raid phases + insignia

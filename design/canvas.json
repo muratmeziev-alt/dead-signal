@@ -167,6 +167,60 @@
       "w": 1440,
       "x": 3080,
       "y": 3090
+    },
+    "Play-Tablet.dc.html": {
+      "expand": "fill",
+      "h": 1194,
+      "is_interactive": true,
+      "title": "▶ Play · tablet 834",
+      "w": 834,
+      "x": 0,
+      "y": 1020
+    },
+    "Play-Mobile.dc.html": {
+      "expand": "fill",
+      "h": 844,
+      "is_interactive": true,
+      "title": "▶ Play · mobile 390",
+      "w": 390,
+      "x": 954,
+      "y": 1020
+    },
+    "Tablet.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "▣ Tablet 834 · all sections",
+      "w": 834,
+      "x": 4640,
+      "y": 0
+    },
+    "Tablet-2.dc.html": {
+      "expand": "fill",
+      "h": 2000,
+      "is_interactive": true,
+      "title": "▣ Tablet · continued",
+      "w": 834,
+      "x": 4640,
+      "y": 8000
+    },
+    "Mobile.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "▣ Mobile 390 · all sections",
+      "w": 390,
+      "x": 5594,
+      "y": 0
+    },
+    "Mobile-2.dc.html": {
+      "expand": "fill",
+      "h": 2000,
+      "is_interactive": true,
+      "title": "▣ Mobile · continued",
+      "w": 390,
+      "x": 5594,
+      "y": 8000
     }
   },
   "createdOnFiles": {
@@ -217,6 +271,22 @@
       "w": 240,
       "x": 3080,
       "y": -300
+    },
+    "tabletTitle": {
+      "kind": "title1",
+      "maxW": 834,
+      "text": "TABLET",
+      "w": 240,
+      "x": 4640,
+      "y": -300
+    },
+    "mobileTitle": {
+      "kind": "title1",
+      "maxW": 390,
+      "text": "MOBILE",
+      "w": 240,
+      "x": 5594,
+      "y": -300
     }
   },
   "order": [
@@ -233,7 +303,13 @@
     "Game-b1y9.dc.html",
     "World-4tv7.dc.html",
     "Media-anp1.dc.html",
-    "Final-tn0c.dc.html"
+    "Final-tn0c.dc.html",
+    "Play-Tablet.dc.html",
+    "Play-Mobile.dc.html",
+    "Tablet.dc.html",
+    "Tablet-2.dc.html",
+    "Mobile.dc.html",
+    "Mobile-2.dc.html"
   ],
   "pages": [],
   "title": "DEAD SIGNAL HQ"

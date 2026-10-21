@@ -1,23 +1,23 @@
-# DEAD SIGNAL HQ — дизайн сайта
+# DEAD SIGNAL HQ — website design
 
-Экспорт канваса **DEAD SIGNAL HQ** из Claude Design.
+Export of the **DEAD SIGNAL HQ** canvas from Claude Design.
 
-## Структура
+## Structure
 
-- `canvas.json` — индекс канваса: список артбордов, их позиции и порядок.
-- `*.dc.html` — артборды (Design Component pages), по одному на секцию:
-  - `Play.dc.html` — полная страница (интерактив)
-  - `Page.dc.html`, `Page-2.dc.html` — полная страница из всех секций
+- `canvas.json` — canvas index: the list of artboards, their positions and order.
+- `*.dc.html` — artboards (Design Component pages), one per section:
+  - `Play.dc.html` — full page (interactive)
+  - `Page.dc.html`, `Page-2.dc.html` — full page built from all sections
   - `Main.dc.html` — 01 · Header + Hero
   - `Game.dc.html` — 02 · The Game: raid phases + insignia
   - `World.dc.html` — 03 · World: factions + traders
   - `Media.dc.html` — 04 · Media + News
   - `Final.dc.html` — 05 · Roadmap, FAQ, CTA, Footer
-  - `*-xxxx.dc.html` — копии секций (варианты)
-- `assets/` — изображения, на которые ссылаются артборды.
+  - `*-xxxx.dc.html` — copies of the sections (variants)
+- `assets/` — images referenced by the artboards.
 
-## Примечание
+## Note
 
-Файлы `.dc.html` рассчитаны на рантайм Claude Design (`support.js`), поэтому
-при открытии напрямую в браузере разметка `{{...}}`, `<sc-for>` и `<sc-if>`
-не обрабатывается. Статическая вёрстка, стили и пути к картинкам — рабочие.
+The `.dc.html` files target the Claude Design runtime (`support.js`), so when
+opened directly in a browser the `{{...}}`, `<sc-for>` and `<sc-if>` markup is
+not processed. The static layout, styles and image paths work.

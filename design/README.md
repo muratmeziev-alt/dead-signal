@@ -19,6 +19,6 @@ Export of the **DEAD SIGNAL HQ** canvas from Claude Design.
 
 ## Note
 
-The `.dc.html` files target the Claude Design runtime (`support.js`), so when
+The production code of this page lives in `../site/` (plain HTML/CSS/JS). The `.dc.html` files target the Claude Design runtime (`support.js`), so when
 opened directly in a browser the `{{...}}`, `<sc-for>` and `<sc-if>` markup is
 not processed. The static layout, styles and image paths work.

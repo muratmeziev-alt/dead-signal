@@ -1,3 +1,4 @@
 node_modules/
+dist/
 # Claude Design runtime, kept local only
 design/support.js

@@ -1,0 +1,95 @@
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: #060404;
+  color: #ece7dc;
+  font-family: Archivo, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: none; }
+
+/* The page is its own scroll container so the glitch filter only covers the viewport. */
+.page {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 180px;
+  background: #060404;
+}
+
+.page > *,
+.page > * > * { flex-shrink: 0; }
+
+@media (max-width: 1099px) { .page { gap: 120px; } }
+@media (max-width: 699px) { .page { gap: 96px; } }
+
+/* Film grain */
+.page-grain {
+  position: fixed;
+  inset: -60%;
+  z-index: 40;
+  pointer-events: none;
+  opacity: .195;
+  background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3CfeColorMatrix type=%22saturate%22 values=%220%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');
+  background-size: 240px 240px;
+  mix-blend-mode: hard-light;
+  animation: page-grain 1s steps(8, end) infinite;
+}
+
+@keyframes page-grain {
+  0% { transform: translate(0, 0); }
+  12% { transform: translate(-6%, 3%); }
+  25% { transform: translate(4%, -5%); }
+  37% { transform: translate(-2%, 6%); }
+  50% { transform: translate(5%, 2%); }
+  62% { transform: translate(-5%, -3%); }
+  75% { transform: translate(3%, 5%); }
+  87% { transform: translate(-4%, -6%); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Custom cursor (fine pointers only, enabled from main.js) */
+.has-cursor,
+.has-cursor * { cursor: none !important; }
+
+.page-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 61;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.page-cursor svg {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 26px;
+  height: 26px;
+  overflow: visible;
+  transition: transform .18s cubic-bezier(.2, .7, .2, 1);
+  transform-origin: 3px 3px;
+}
+
+.page-cursor path {
+  fill: #2a0b0d;
+  stroke: #e5303a;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition: fill .15s;
+}
+
+.page-cursor[data-hover] path { fill: #e5303a; stroke: #ff4f57; }
+.page-cursor[data-down] svg { transform: scale(.86); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-grain { animation: none; }
+}

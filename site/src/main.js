@@ -5,10 +5,14 @@ import { init as initMedia } from './sections/media/media.js';
 import { init as initFinal } from './sections/final/final.js';
 
 const FX = {
-  idle: 0.3,   // background glitch strength while idle
-  scroll: 1.3, // glitch kick from scrolling and sections entering view
+  idle: 0.3,   // how often idle glitch bursts happen
+  scroll: 1.3, // strength of the burst when a section scrolls into view
   cursor: true,
 };
+
+// The glitch is a full-viewport SVG filter and is expensive to render, so it only
+// runs in short bursts, never while the page is scrolling, and only on desktop.
+const SCROLL_SETTLE_MS = 160;
 
 const page = document.getElementById('page');
 
@@ -20,7 +24,7 @@ initFinal(page.querySelector('.final'));
 
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   initSmoothScroll();
-  initGlitch();
+  if (matchMedia('(pointer: fine)').matches) initGlitch();
   if (FX.cursor && matchMedia('(pointer: fine)').matches) initCursor();
 }
 
@@ -135,24 +139,20 @@ function cssAnimationRunning() {
     a.playState === 'running' && a.effect?.getTiming().iterations !== Infinity);
 }
 
-function kick(v) {
-  const g = Math.min(1, Math.max(0, (v - 6) / 70)) * FX.scroll;
-  if (g > glitch) glitch = Math.min(2, g);
-}
-
 function initGlitch() {
   const fx = createFilter();
   const R = Math.random;
   let idleT = 0;
   let burst = 0;
-  let lastY = page.scrollTop;
+  let lastScroll = -Infinity;
+  let pendingBurst = false;
 
   const frame = (now) => {
     requestAnimationFrame(frame);
     if (page.querySelector('[aria-modal="true"]:not([hidden])')) { page.style.filter = ''; return; }
-    // Chrome does not repaint compositor-driven CSS animations under an SVG filter,
-    // so the glitch steps aside while any finite CSS animation in the page is playing.
-    if (cssAnimationRunning()) { page.style.filter = ''; return; }
+    // Re-rendering the filter on every scroll frame is what made scrolling stutter.
+    if (now - lastScroll < SCROLL_SETTLE_MS) { page.style.filter = ''; return; }
+    if (pendingBurst) { pendingBurst = false; glitch = Math.max(glitch, 0.45 * FX.scroll); }
 
     const cursorOn = cursorGlitch > 0.02;
     if (cursorOn) {
@@ -180,8 +180,11 @@ function initGlitch() {
       }
     } else glitch *= 0.86;
 
-    const e = g + FX.idle * 0.2;
+    const e = g;
     if (e < 0.01 && !cursorOn) { page.style.filter = ''; return; }
+    // Chrome does not repaint compositor-driven CSS animations under an SVG filter,
+    // so the glitch steps aside while any finite CSS animation in the page is playing.
+    if (cssAnimationRunning()) { page.style.filter = ''; return; }
     page.style.filter = 'url(#page-glitch)';
     if (!tick) return;
 
@@ -204,18 +207,14 @@ function initGlitch() {
   };
   requestAnimationFrame(frame);
 
-  page.addEventListener('scroll', () => {
-    const y = page.scrollTop;
-    kick(Math.abs(y - lastY));
-    lastY = y;
-  }, { passive: true });
+  page.addEventListener('scroll', () => { lastScroll = performance.now(); }, { passive: true });
 
-  // A short glitch burst whenever a section scrolls into view.
+  // A short glitch burst once scrolling settles after a section comes into view.
   const io = new IntersectionObserver((entries) => {
     for (const en of entries) {
       if (!en.isIntersecting) continue;
       io.unobserve(en.target);
-      glitch = Math.max(glitch, 0.45 * FX.scroll);
+      pendingBurst = true;
     }
   }, { root: page, rootMargin: '0px 0px -25% 0px' });
   [...page.children].slice(1).forEach((el) => io.observe(el));
@@ -240,7 +239,8 @@ function initCursor() {
     el.style.transform = `translate3d(${x}px,${y}px,0)`;
     const hit = e.target.closest?.('a,button,input,select,label,[role="tab"]');
     el.toggleAttribute('data-hover', !!hit);
-    cursorGlitch = Math.max(cursorGlitch, Math.min(1, speed / 35));
+    // Only fast flicks distort the page; ordinary pointer movement stays cheap.
+    if (speed > 30) cursorGlitch = Math.max(cursorGlitch, Math.min(1, speed / 60));
   }, { passive: true });
 
   document.addEventListener('mouseout', (e) => {
